@@ -1,0 +1,39 @@
+/* CSS COMÚN: EN ÉL ESTÁN LOS RECURSOS COMUNES PARA TODO EL PROYECTO*/
+
+
+/* Le doy un fondo y un formato general a la página: */
+
+body {
+    background: url(#);
+    background-color: #161616;
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    margin: 0;
+    color: whitesmoke;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+/* Formato para los enlaces */
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+
+/* Cargo las fuentes que voy a utilizar */
+
+@font-face {
+    font-family: Roboto;
+    src: url(../assets/fuentes/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: Bebas;
+    src: url(../assets/fuentes/BebasNeue-Regular.ttf);
+}

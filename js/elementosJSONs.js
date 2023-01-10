@@ -1,4 +1,18 @@
-let canvas = document.getElementById("canvas").getContext("2d")
+
+//*JSON de prueba de la cotización de Apple:
+//Petición de varias empresas indicando el número de datos que me devuelve:
+//http://api.marketstack.com/v1/eod?access_key=be3916c9ef079e99ddcb133bcc6bccc2&symbols=AAPL,msft&limit=8
+
+//100 datos de cotizaciones de apple:
+// 20230110014614
+// http://api.marketstack.com/v1/eod?access_key=be3916c9ef079e99ddcb133bcc6bccc2&symbols=AAPL
+/*
+fetch(`http://api.marketstack.com/v1/eod?access_key=be3916c9ef079e99ddcb133bcc6bccc2&symbols=AAPL&limit=10`)
+    .then((response) => response.json())
+    .then(dataJson => console.log(dataJson))
+    .catch((error) => console.log(error))
+*/
+
 appleHistoryData = [
     {
         "open": 130.465,
@@ -1701,43 +1715,260 @@ appleHistoryData = [
         "date": "2022-08-17T00:00:00+0000"
     }
 ]
-dataAppl = []
-labels = []
-appleHistoryData.map(data => {
-    dataAppl.push(data.open)
-    labels.push(data.date)
-})
-console.log(dataAppl)
 
-const config = {
-    type: "line",
-    data: {
-        labels: labels,
-        datasets: [
-            {
-                label: "Cotización ",
-                backgroundColor: "rgb(0,0,0,0.5)",
-                borderColor: "rgb(245, 245, 245)",
-                data: dataAppl,
-                fill: true,
-            }
-        ]
+
+//*********JSON de la cotización intradia de Apple:
+
+
+
+intradayDataAapl = [// http://api.marketstack.com/v1/intraday/2023-01-09?access_key=be3916c9ef079e99ddcb133bcc6bccc2&symbols=AAPL
+    {
+        "open": 132.455,
+        "high": 132.515,
+        "low": 132.43,
+        "last": null,
+        "close": null,
+        "volume": null,
+        "date": "2023-01-09T23:00:00+0000",
+        "symbol": "AAPL",
+        "exchange": "IEXG"
     },
-    options: {
-        legend: {
-            display: false,
-            hidden: true,
-        },
-        scales: {
-            y: {
-                max: 180,
-                grace: "40%",
-            },
-            x: {
-                display: false,
-            }
-        },
+    {
+        "open": 132.94,
+        "high": 132.955,
+        "low": 132.81,
+        "last": null,
+        "close": null,
+        "volume": null,
+        "date": "2023-01-09T22:00:00+0000",
+        "symbol": "AAPL",
+        "exchange": "IEXG"
+    },
+    {
+        "open": 132.76,
+        "high": 132.81,
+        "low": 132.73,
+        "last": null,
+        "close": null,
+        "volume": null,
+        "date": "2023-01-09T21:00:00+0000",
+        "symbol": "AAPL",
+        "exchange": "IEXG"
+    },
+    {
+        "open": 130.1,
+        "high": 133.41,
+        "low": 129.98,
+        "last": 130.69,
+        "close": 129.62,
+        "volume": 985450.0,
+        "date": "2023-01-09T20:00:00+0000",
+        "symbol": "AAPL",
+        "exchange": "IEXG"
+    },
+    {
+        "open": 130.1,
+        "high": 133.41,
+        "low": 129.98,
+        "last": 132.505,
+        "close": 129.62,
+        "volume": 733347.0,
+        "date": "2023-01-09T18:00:00+0000",
+        "symbol": "AAPL",
+        "exchange": "IEXG"
+    },
+    {
+        "open": 130.1,
+        "high": 133.41,
+        "low": 129.98,
+        "last": 132.87,
+        "close": 129.62,
+        "volume": 628439.0,
+        "date": "2023-01-09T17:00:00+0000",
+        "symbol": "AAPL",
+        "exchange": "IEXG"
+    },
+    {
+        "open": 130.1,
+        "high": 133.135,
+        "low": 129.98,
+        "last": 132.74,
+        "close": 129.62,
+        "volume": 354439.0,
+        "date": "2023-01-09T16:00:00+0000",
+        "symbol": "AAPL",
+        "exchange": "IEXG"
+    },
+    {
+        "open": 130.1,
+        "high": 132.165,
+        "low": 129.98,
+        "last": 132.095,
+        "close": 129.62,
+        "volume": 160132.0,
+        "date": "2023-01-09T15:00:00+0000",
+        "symbol": "AAPL",
+        "exchange": "IEXG"
     }
-}
+]
 
-let chart = new Chart(canvas, config)
+
+
+//*JSON de las noticias de Apple:
+/*
+const options = {
+    method: 'GET',
+    headers: {
+        'X-RapidAPI-Key': '3b5669219amsh4e7d8de7f7170e8p1f3022jsn93ade6dce9f4',
+        'X-RapidAPI-Host': 'yahoo-finance15.p.rapidapi.com'
+    }
+};
+
+fetch('https://yahoo-finance15.p.rapidapi.com/api/yahoo/ne/news/AAPL', options)
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch(err => console.error(err));
+    */
+
+aaplNews = [
+    {
+        "description": "In what could be a huge blow to Broadcom Inc., Apple Inc. reportedly plans to replace a wireless networking chip it gets from the semiconductor company with one it's developed in house.  Apple is already working on its replacement processor, according to the report.  The Cupertino-based tech giant is Broadcom's biggest customer.",
+        "guid": "8608e2cf-0f81-3806-903e-cac6706ae0d4",
+        "link": "https://finance.yahoo.com/m/8608e2cf-0f81-3806-903e-cac6706ae0d4/report%3A-broadcom%27s-biggest.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 23:25:53 +0000",
+        "title": "Report: Broadcom's biggest customer — Apple — is going to stop buying a key part"
+    },
+    {
+        "description": "Like many big companies, Microsoft (NASDAQ: MSFT) likes to grow even larger by acquisitions.  The pace of the software giant's asset buys has slowed of late, but it's still got its eyes on attractively valued prizes.  On Monday the company announced its latest acquisition, and investors greeted the news by trading Microsoft stock up by 1% to top the essentially flat S&P 500 index.",
+        "guid": "c97af867-f3c7-38dd-bc7a-225c5abcfc31",
+        "link": "https://finance.yahoo.com/m/c97af867-f3c7-38dd-bc7a-225c5abcfc31/why-microsoft-stock-topped.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 23:22:00 +0000",
+        "title": "Why Microsoft Stock Topped the Market Today"
+    },
+    {
+        "description": "(Bloomberg) -- Apple Inc.’s push to replace the chips inside its devices with homegrown components will include dropping a key Broadcom Inc. part in 2025, according to people familiar with the situation, dealing a blow to one of its biggest suppliers. Most Read from BloombergUS Safety Agency to Consider Ban on Gas Stoves Amid Health FearsGoldman to Cut About 3,200 Jobs This Week After Cost ReviewStocks Give Up Rally Above Key Mark After Fedspeak: Markets WrapCommodity Ship Heads for Inspection A",
+        "guid": "efaa3848-7fa2-3764-9d77-9d2382767cd3",
+        "link": "https://finance.yahoo.com/news/apple-plans-drop-key-broadcom-210850086.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 23:18:32 +0000",
+        "title": "Apple Plans to Drop Key Broadcom Chip to Use In-House Design"
+    },
+    {
+        "description": "Broadcom shares closed sharply lower Monday in the final minutes of trading following a report that Apple was working on its own WiFi and Bluetooth chips.",
+        "guid": "6c969e9b-2826-34b8-9518-26725feb5a7d",
+        "link": "https://finance.yahoo.com/m/6c969e9b-2826-34b8-9518-26725feb5a7d/broadcom-stock-dinged-in.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 21:55:00 +0000",
+        "title": "Broadcom stock dinged in final minutes on report Apple working on its own WiFi/Bluetooth chips"
+    },
+    {
+        "description": "Millennials are more apt to step in and buy equities during sell-offs, according to data compiled by TD Ameritrade.",
+        "guid": "a0af20f6-9241-42c0-8e3d-a325eda21258",
+        "link": "https://finance.yahoo.com/news/stocks-millennials-more-likely-to-use-pullbacks-to-buy-says-td-ameritrade-strategist-215453125.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 21:54:53 +0000",
+        "title": "Stocks: Millennials more likely to use pullbacks to buy, says TD Ameritrade strategist"
+    },
+    {
+        "description": "Apple Inc plans to drop a Broadcom Inc chip used in its devices in 2025 and use an in-house design instead, Bloomberg News reported on Monday citing people familiar with the matter.  Apple plans to replace a Wi-Fi and Bluetooth chip from Broadcom with an in-house design, according to the Bloomberg report.  Apple did not respond to a Reuters request for comment.",
+        "guid": "4b4781a8-ddb0-35be-9121-c13f01ed46dd",
+        "link": "https://finance.yahoo.com/news/1-apple-drop-key-broadcom-214041021.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 21:40:41 +0000",
+        "title": "UPDATE 2-Apple to drop key Broadcom chip in 2025 for in-house design - Bloomberg News"
+    },
+    {
+        "description": "Apple plans to replace a Wi-Fi and Bluetooth chip from Broadcom with an in-house design, according to the Bloomberg report.  Apple did not respond to a Reuters request for comment.  Shares of Broadcom ended 2% lower.",
+        "guid": "834901db-96d7-3220-b7fe-fd0508801424",
+        "link": "https://ca.finance.yahoo.com/news/apple-drop-key-broadcom-chip-212421123.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 21:24:21 +0000",
+        "title": "Apple to drop key Broadcom chip in 2025 for in-house design - Bloomberg News"
+    },
+    {
+        "description": "Apple will announce a new mixed-reality headset in the coming months with plans to sell the product to consumers by fall 2023, according to a new report.",
+        "guid": "3218a7a0-d77a-366d-aadf-b663915fd800",
+        "link": "https://finance.yahoo.com/news/apple-plans-release-mixed-reality-212047619.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 21:20:47 +0000",
+        "title": "Apple plans to release a mixed-reality headset in fall 2023: report"
+    },
+    {
+        "description": "In this article, we take a look at the 15 best growth stocks to buy according to hedge funds. If you want to see more of the best growth stocks, go directly to 5 Best Growth Stocks to Buy According to Hedge Funds. In a report titled “2023 Long-Term Capital Market Assumptions” JPMorgan mentioned some reasons […]",
+        "guid": "9ee5c08e-d004-3892-ad3d-8db212bca57d",
+        "link": "https://finance.yahoo.com/news/15-best-growth-stocks-buy-211023529.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 21:10:23 +0000",
+        "title": "15 Best Growth Stocks to Buy According to Hedge Funds"
+    },
+    {
+        "description": "Barely a week into 2023, the tech titan already has plans to build more than 400,000 more square feet of space at its new Northwest Austin campus.",
+        "guid": "a474e9bd-11fc-38ed-a6da-8c1aacadeac7",
+        "link": "https://finance.yahoo.com/m/a474e9bd-11fc-38ed-a6da-8c1aacadeac7/filings%3A-apple-now-intends-to.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 20:54:35 +0000",
+        "title": "Filings: Apple now intends to pour at least $240M into expansion of NW Austin campus"
+    },
+    {
+        "description": "Stern, who joined the iPhone maker from Time Warner Cable in 2016, will leave at the end of the month, according to the report.  Apple did not immediately respond to a Reuters request for comment.  A prominent media executive, Stern oversaw an expansion of Apple's paid subscription businesses, particularly its television offering, Apple TV+.",
+        "guid": "00766a22-70f4-3002-abff-5dc1254bd875",
+        "link": "https://finance.yahoo.com/news/apples-vp-services-stern-depart-193631669.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 19:36:31 +0000",
+        "title": "Apple VP of services Stern to depart: report"
+    },
+    {
+        "description": "Apple Inc's vice president of services, Peter Stern, has informed colleagues that he is leaving the company, the Insider reported on Monday, citing a source close to the executive.  Stern, who joined the iPhone maker from Time Warner Cable in 2016, will leave at the end of the month, according to the report.  Apple did not immediately respond to a Reuters request for comment.",
+        "guid": "59f9eb8e-f102-3e2c-b2bd-1ec8d0cc6178",
+        "link": "https://finance.yahoo.com/news/apples-vp-services-stern-depart-193321773.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 19:33:21 +0000",
+        "title": "Apple's VP services Stern to depart - Insider"
+    },
+    {
+        "description": "(Bloomberg) -- The Apple Inc. executive who oversees the business side of its TV+, iCloud and Apple One bundles, as well as News+, is leaving the company, according to people with knowledge of the matter, adding to recent upheaval.Most Read from BloombergUS Safety Agency to Consider Ban on Gas Stoves Amid Health FearsGoldman to Cut About 3,200 Jobs This Week After Cost ReviewStocks Give Up Rally Above Key Mark After Fedspeak: Markets WrapCommodity Ship Heads for Inspection After Suez Canal Misha",
+        "guid": "332dea3b-dbe8-3675-a41f-777509343048",
+        "link": "https://finance.yahoo.com/news/apple-services-vp-peter-stern-193146068.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 19:31:46 +0000",
+        "title": "Apple Services Executive Exits, Sowing Doubt on Unit Succession"
+    },
+    {
+        "description": "On a good day for tech stocks, Bloomberg hinted that Apple's new AR/VR headset will be released in the next couple of months.",
+        "guid": "f8fb0e35-32d6-3246-bc74-306458be8c9d",
+        "link": "https://finance.yahoo.com/m/f8fb0e35-32d6-3246-bc74-306458be8c9d/why-apple-was-rising-today.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 16:50:09 +0000",
+        "title": "Why Apple Was Rising Today"
+    },
+    {
+        "description": "The Computer - Mini Computers industry is suffering from massive supply-chain and logistical issues, as well as geopolitical challenges. However, the strong demand for laptops and tablets bodes well for Apple (AAPL) and Lenovo (LNVGY).",
+        "guid": "19e3d66f-d56b-30ab-b527-23269c1ef133",
+        "link": "https://finance.yahoo.com/news/2-stocks-watch-challenging-computer-164704246.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 16:47:04 +0000",
+        "title": "2 Stocks to Watch From the Challenging Computer Industry"
+    },
+    {
+        "description": "Verizon Communications (NYSE: VZ), the largest wireless carrier in the United States, is considered by many to be a stable blue-chip dividend stock for conservative investors.  The original AT&T (NYSE: T) was co-founded by Alexander Graham Bell in 1885 as a subsidiary of the Bell Telephone Company.  In the 1980s, the U.S. Department of Justice finally forced AT&T to split its sprawling business into several smaller companies known as the \"Baby Bells.\"",
+        "guid": "601878cc-7e15-3a8a-94a6-0b98083c1ea4",
+        "link": "https://finance.yahoo.com/m/601878cc-7e15-3a8a-94a6-0b98083c1ea4/3-things-about-verizon.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 16:31:17 +0000",
+        "title": "3 Things About Verizon Communications That Smart Investors Know"
+    },
+    {
+        "description": "Yahoo Finance tech editor Dan Howley discusses Apple iPhone exports from India as the company looks to shift some of its production away from China.",
+        "guid": "af27bd40-e4fc-3cf3-8179-b9cceccfcd33",
+        "link": "https://finance.yahoo.com/video/iphone-exports-india-surpass-2-162958084.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 16:29:58 +0000",
+        "title": "iPhone exports from India surpass $2.5 billion despite Apple supply issues"
+    },
+    {
+        "description": "By Yasin Ebrahim",
+        "guid": "bd4b1949-f15b-38cc-aa9f-2abd9d890caf",
+        "link": "https://finance.yahoo.com/news/apple-reportedly-preparing-ditch-broadcom-162532233.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 16:25:32 +0000",
+        "title": "Apple reportedly preparing to ditch Broadcom chips for in-house design: Bloomberg"
+    },
+    {
+        "description": "By Yasin Ebrahim",
+        "guid": "8188e2f8-000d-3d85-9688-75b18838e8a9",
+        "link": "https://finance.yahoo.com/news/stock-market-today-dow-pares-161815179.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 16:18:15 +0000",
+        "title": "Stock market today: Dow pares gains to close lower as slump in health care bites"
+    },
+    {
+        "description": "Yahoo Finance's Ines Ferré breaks down how stocks and cryptocurrencies are trading on Monday morning.",
+        "guid": "27fc046d-8038-342c-99ee-3d07f26ab938",
+        "link": "https://finance.yahoo.com/video/apple-amazon-nvidia-stocks-rise-161337842.html?.tsrc=rss",
+        "pubDate": "Mon, 09 Jan 2023 16:13:37 +0000",
+        "title": "Apple, Amazon, Nvidia stocks rise as U.S. dollar declines"
+    }
+]

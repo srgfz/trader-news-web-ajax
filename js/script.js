@@ -4,7 +4,7 @@ import { Stock } from "./Stock.js"
 
 
 
-const rapidApiKey = "b9f7310b0amsh11e4ede0f32192fp194c21jsne9ba293db601"
+const rapidApiKey = "#"
 
 
 
@@ -666,7 +666,7 @@ cotizacionesHistoricas.map(cotizacion => {
 
 
 
-
+asdfasd
 
 
 //*TODO: funciones y cosas:

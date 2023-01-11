@@ -1,4 +1,3 @@
-const rapidApiKey = "#"
 
 //TODO:performanceId DE TESLA:
 const teslaId = "0P0000OQN8"

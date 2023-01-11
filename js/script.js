@@ -1,6 +1,14 @@
-let canvas = document.getElementById("canvas").getContext("2d")
+import { Company } from "./Company.js"
+import { News } from "./News.js"
+import { Stock } from "./Stock.js"
 
-console.log(infoEmpresas)
+
+
+const rapidApiKey = "b9f7310b0amsh11e4ede0f32192fp194c21jsne9ba293db601"
+
+
+
+let canvas = document.getElementById("canvas").getContext("2d")
 
 let appleIntradayData =
     [
@@ -648,11 +656,97 @@ let appleIntradayData =
 
 
 
+cotizacionesHistoricas.map(cotizacion => {
+    console.log(cotizacion);
+    console.log(cotizacion["1Y"])
+})
 
 
-dataAppl = []
-labels = []
-console.log(intradataData)
+
+
+
+
+
+
+
+//*TODO: funciones y cosas:
+let companies = []
+let news = []
+let stock = []
+let performanceIds = ""
+
+
+
+const saveCompanyInfo = (company) => {
+    company.map(companyInfo => {
+        companies.push(new Company(companyInfo.PerformanceId, companyInfo.Name, companyInfo.Exchange, companyInfo.ExchangeShortName, companyInfo.Sector, companyInfo.Industry, companyInfo.Currency))
+        //Voy guardando en un string el PerformaceId para hacer la consulta del stock de todas las empresas en la misma petición:
+        performanceIds += companyInfo.PerformanceId
+        if (companyInfo != company[company.length - 1]) {//Separador para la consulta a la api que aplicaré en todos los elementos menos el último
+            performanceIds += "%2C%20"
+        }
+    })
+}
+
+const saveCompanyStock = (data) => {
+    data.map(companyData => {
+        stock.push(new Stock(companyData))
+    })
+}
+
+
+/*
+* 
+* @param {$method} method 
+* @param {*} rapidApiKey 
+* @param {*} rapidApiHost 
+* @param {*} fetchUrl 
+* @returns : devuelve el resultado de la petición a rapidApi
+*/
+const rapidApiReturn = async (method, rapidApiHost, fetchUrl, apiKey = rapidApiKey) => {
+    const options = {
+        method: method,
+        headers: {
+            'X-RapidAPI-Key': apiKey,
+            'X-RapidAPI-Host': rapidApiHost
+        }
+    };
+
+    return fetch(fetchUrl, options)
+        .then(response => response.json())
+        .then(response => response)
+        .catch(err => console.error(err));
+}
+
+
+
+
+const apiRequests = async () => {
+    //Guardamos la información de la empresa:
+    let companyInfo = await rapidApiReturn("GET", "ms-finance.p.rapidapi.com", "https://ms-finance.p.rapidapi.com/market/auto-complete?query=tesla");
+    saveCompanyInfo(companyInfo)
+    console.log(companies)
+
+    //Guardamos la cotización de las acciones
+    let companiesStock = await rapidApiReturn("GET", "ms-finance.p.rapidapi.com", `https://ms-finance.p.rapidapi.com/stock/get-histories?PerformanceId=${performanceIds}`);
+    console.log(companiesStock)
+    let day = "1D"
+    companiesStock.map(data => {
+        console.log(data["1Y"])
+
+    })
+
+    // let idPerformance = companyInfo
+    // let intradayStock = await rapidApiReturn()
+    // let lontTermStock = await rapidApiReturn()
+
+}
+
+
+
+
+let dataAppl = []
+let labels = []
 
 appleIntradayData.map(data => {
     dataAppl.push(data.openPrice)
@@ -662,7 +756,6 @@ appleIntradayData.map(data => {
 dataAppl = dataAppl.reverse()
 labels = labels.reverse()
 
-console.log(dataAppl, labels)
 
 const config = {
     type: "line",
@@ -695,3 +788,8 @@ const config = {
 }
 
 let chart = new Chart(canvas, config)
+
+
+//***LISTENERS */
+
+document.addEventListener("DOMContentLoaded", apiRequests)

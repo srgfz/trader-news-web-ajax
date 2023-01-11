@@ -1,13 +1,15 @@
 export class Company {
     //Constructor
-    constructor(id, name, ticker, exchange, exchangeShortName, sector, industry, stock, news) {
+    constructor(id, name, exchange, exchangeShortName, sector, industry, currency, stock, news) {
         this.id = id;
         this.name = name;
-        this.ticker = ticker;
         this.exchange = exchange;
         this.exchangeShortName = exchangeShortName;
         this.sector = sector;
         this.industry = industry;
+        this.currency = currency;
+        this.stock = stock;
+        this.news = news;
     }
 
     //Getters y Setters:
@@ -23,13 +25,6 @@ export class Company {
     }
     setName(name) {
         this.name = name;
-    }
-
-    getTicker() {
-        return this.ticker;
-    }
-    setTicker(ticker) {
-        this.ticker = ticker;
     }
 
     getExchange() {
@@ -58,6 +53,27 @@ export class Company {
     }
     setIndustry(industry) {
         this.industry = industry;
+    }
+
+    getCurrency() {
+        return this.currency;
+    }
+    setCurrency(currency) {
+        this.currency = currency;
+    }
+
+    getStock() {
+        return this.stock;
+    }
+    setStock(stock) {
+        this.stock = stock;
+    }
+
+    getNews() {
+        return this.news;
+    }
+    setNews(news) {
+        this.news = news;
     }
 
 

@@ -1,33 +1,50 @@
 export class Stock {
     //Constructor
-    constructor(company, data, news) {
-        this.company = company;
-        this.data = data;
-        this.news = news;
-
+    constructor(day, trimester, year, lustrum, max) {
+        this.day = day;
+        this.trimester = trimester;
+        this.year = year;
+        this.lustrum = lustrum;
+        this.max = max;
     }
 
     //Getters y Setters:
-    getCompany() {
-        return this.company;
+    getDay() {
+        return this.day;
     }
-    setCompany(company) {
-        this.company = company;
-    }
-
-    getData() {
-        return this.data;
-    }
-    setData(data) {
-        this.data = data;
+    setDay(day) {
+        this.day = day;
     }
 
-    getNews() {
-        return this.news;
+    getTrimester() {
+        return this.trimester;
     }
-    setNews(news) {
-        this.news = news;
+    setTrimester(trimester) {
+        this.trimester = trimester;
     }
+
+    getYear() {
+        return this.year;
+    }
+    setYear(year) {
+        this.year = year;
+    }
+
+    getLustrum() {
+        return this.lustrum;
+    }
+    setLustrum(lustrum) {
+        this.lustrum = lustrum;
+    }
+
+    getMax() {
+        return this.max;
+    }
+    setMax(max) {
+        this.max = max;
+    }
+
+
 
 
 }

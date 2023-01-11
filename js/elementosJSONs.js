@@ -8890,83 +8890,1285 @@ const cotizacionesHistoricas =
 
 
 //TODO: INTRADATA DE TESLA Y DE APPLE:
-const intradata = [
-    "0P0000OQN8" = [
-        {
-            "datetime": "2023-01-10T14:45:00Z",
-            "volume": 4710282,
-            "lastPrice": 118.32,
-            "openPrice": 119.2499,
-            "lowPrice": 117.61,
-            "highPrice": 119.6145
-        },
-        {
-            "datetime": "2023-01-10T14:40:00Z",
-            "volume": 4675097,
-            "lastPrice": 119.2499,
-            "openPrice": 121.3,
-            "lowPrice": 118.91,
-            "highPrice": 121.3
-        },
-        {
-            "datetime": "2023-01-10T14:35:00Z",
-            "volume": 3571286,
-            "lastPrice": 121.2613,
-            "openPrice": 122.2625,
-            "lowPrice": 121.05,
-            "highPrice": 122.68
-        },
-        {
-            "datetime": "2023-01-10T14:30:00Z",
-            "volume": 5954522,
-            "lastPrice": 122.24,
-            "openPrice": 121.07,
-            "lowPrice": 120.3,
-            "highPrice": 122.76
-        }
-    ],
-    "0P000000GY" = [
-        {
-            "datetime": "2023-01-10T14:45:00Z",
-            "volume": 1053822,
-            "lastPrice": 129.89,
-            "openPrice": 130.095,
-            "lowPrice": 129.51,
-            "highPrice": 130.41
-        },
-        {
-            "datetime": "2023-01-10T14:40:00Z",
-            "volume": 1055795,
-            "lastPrice": 130.1,
-            "openPrice": 130.374,
-            "lowPrice": 129.9,
-            "highPrice": 130.45
-        },
-        {
-            "datetime": "2023-01-10T14:35:00Z",
-            "volume": 1161447,
-            "lastPrice": 130.37,
-            "openPrice": 131.1815,
-            "lowPrice": 130.2201,
-            "highPrice": 131.21
-        },
-        {
-            "datetime": "2023-01-10T14:30:00Z",
-            "volume": 2175441,
-            "lastPrice": 131.19,
-            "openPrice": 130.26,
-            "lowPrice": 129.795,
-            "highPrice": 131.2636
-        },
-        {
-            "datetime": "2023-01-10T14:25:00Z",
-            "volume": 164,
-            "lastPrice": 130.26,
-            "openPrice": 130.26,
-            "lowPrice": 130.26,
-            "highPrice": 130.26
-        }
-    ]
+const intradataData = [
+    {
+        "0P0000OQN8": [
+            {
+                "datetime": "2023-01-10T21:00:00Z",
+                "volume": 1654488,
+                "lastPrice": 118.85,
+                "openPrice": 118.84,
+                "lowPrice": 118.82,
+                "highPrice": 118.85
+            },
+            {
+                "datetime": "2023-01-10T20:55:00Z",
+                "volume": 2543469,
+                "lastPrice": 118.84,
+                "openPrice": 118.365,
+                "lowPrice": 118.359,
+                "highPrice": 118.88
+            },
+            {
+                "datetime": "2023-01-10T20:50:00Z",
+                "volume": 2198985,
+                "lastPrice": 118.35,
+                "openPrice": 118.49,
+                "lowPrice": 118.21,
+                "highPrice": 118.6291
+            },
+            {
+                "datetime": "2023-01-10T20:45:00Z",
+                "volume": 2138765,
+                "lastPrice": 118.47,
+                "openPrice": 118.07,
+                "lowPrice": 117.97,
+                "highPrice": 118.49
+            },
+            {
+                "datetime": "2023-01-10T20:40:00Z",
+                "volume": 1400816,
+                "lastPrice": 118.0702,
+                "openPrice": 118.065,
+                "lowPrice": 117.7201,
+                "highPrice": 118.13
+            },
+            {
+                "datetime": "2023-01-10T20:35:00Z",
+                "volume": 1352890,
+                "lastPrice": 118.0691,
+                "openPrice": 117.9712,
+                "lowPrice": 117.86,
+                "highPrice": 118.17
+            },
+            {
+                "datetime": "2023-01-10T20:30:00Z",
+                "volume": 1911448,
+                "lastPrice": 117.97,
+                "openPrice": 117.5839,
+                "lowPrice": 117.5839,
+                "highPrice": 118.17
+            },
+            {
+                "datetime": "2023-01-10T20:25:00Z",
+                "volume": 1262235,
+                "lastPrice": 117.58,
+                "openPrice": 117.2601,
+                "lowPrice": 117.22,
+                "highPrice": 117.68
+            },
+            {
+                "datetime": "2023-01-10T20:20:00Z",
+                "volume": 1053721,
+                "lastPrice": 117.26,
+                "openPrice": 117.37,
+                "lowPrice": 117.1,
+                "highPrice": 117.42
+            },
+            {
+                "datetime": "2023-01-10T20:15:00Z",
+                "volume": 1328266,
+                "lastPrice": 117.371,
+                "openPrice": 117.08,
+                "lowPrice": 117.06,
+                "highPrice": 117.47
+            },
+            {
+                "datetime": "2023-01-10T20:10:00Z",
+                "volume": 1178168,
+                "lastPrice": 117.085,
+                "openPrice": 117.06,
+                "lowPrice": 116.87,
+                "highPrice": 117.19
+            },
+            {
+                "datetime": "2023-01-10T20:05:00Z",
+                "volume": 1653123,
+                "lastPrice": 117.07,
+                "openPrice": 117.2196,
+                "lowPrice": 116.65,
+                "highPrice": 117.3
+            },
+            {
+                "datetime": "2023-01-10T20:00:00Z",
+                "volume": 1124545,
+                "lastPrice": 117.2142,
+                "openPrice": 117.68,
+                "lowPrice": 117.11,
+                "highPrice": 117.7352
+            },
+            {
+                "datetime": "2023-01-10T19:55:00Z",
+                "volume": 679501,
+                "lastPrice": 117.6793,
+                "openPrice": 117.57,
+                "lowPrice": 117.4,
+                "highPrice": 117.76
+            },
+            {
+                "datetime": "2023-01-10T19:50:00Z",
+                "volume": 1042662,
+                "lastPrice": 117.58,
+                "openPrice": 117.6112,
+                "lowPrice": 117.41,
+                "highPrice": 117.71
+            },
+            {
+                "datetime": "2023-01-10T19:45:00Z",
+                "volume": 1179791,
+                "lastPrice": 117.618,
+                "openPrice": 117.4701,
+                "lowPrice": 117.24,
+                "highPrice": 117.71
+            },
+            {
+                "datetime": "2023-01-10T19:40:00Z",
+                "volume": 1056419,
+                "lastPrice": 117.4701,
+                "openPrice": 117.49,
+                "lowPrice": 117.39,
+                "highPrice": 117.6645
+            },
+            {
+                "datetime": "2023-01-10T19:35:00Z",
+                "volume": 985316,
+                "lastPrice": 117.48,
+                "openPrice": 117.7301,
+                "lowPrice": 117.44,
+                "highPrice": 117.89
+            },
+            {
+                "datetime": "2023-01-10T19:30:00Z",
+                "volume": 1163151,
+                "lastPrice": 117.73,
+                "openPrice": 117.7107,
+                "lowPrice": 117.46,
+                "highPrice": 117.93
+            },
+            {
+                "datetime": "2023-01-10T19:25:00Z",
+                "volume": 1001974,
+                "lastPrice": 117.71,
+                "openPrice": 117.7434,
+                "lowPrice": 117.48,
+                "highPrice": 117.8
+            },
+            {
+                "datetime": "2023-01-10T19:20:00Z",
+                "volume": 1055476,
+                "lastPrice": 117.75,
+                "openPrice": 117.791,
+                "lowPrice": 117.65,
+                "highPrice": 118.07
+            },
+            {
+                "datetime": "2023-01-10T19:15:00Z",
+                "volume": 1026453,
+                "lastPrice": 117.7915,
+                "openPrice": 117.6707,
+                "lowPrice": 117.5,
+                "highPrice": 117.82
+            },
+            {
+                "datetime": "2023-01-10T19:10:00Z",
+                "volume": 1116409,
+                "lastPrice": 117.6799,
+                "openPrice": 117.96,
+                "lowPrice": 117.67,
+                "highPrice": 118.12
+            },
+            {
+                "datetime": "2023-01-10T19:05:00Z",
+                "volume": 1098822,
+                "lastPrice": 117.962,
+                "openPrice": 117.75,
+                "lowPrice": 117.6,
+                "highPrice": 118.09
+            },
+            {
+                "datetime": "2023-01-10T19:00:00Z",
+                "volume": 1155064,
+                "lastPrice": 117.74,
+                "openPrice": 117.81,
+                "lowPrice": 117.6,
+                "highPrice": 118.03
+            },
+            {
+                "datetime": "2023-01-10T18:55:00Z",
+                "volume": 1250038,
+                "lastPrice": 117.8,
+                "openPrice": 117.735,
+                "lowPrice": 117.32,
+                "highPrice": 117.86
+            },
+            {
+                "datetime": "2023-01-10T18:50:00Z",
+                "volume": 930666,
+                "lastPrice": 117.73,
+                "openPrice": 117.9301,
+                "lowPrice": 117.67,
+                "highPrice": 118.03
+            },
+            {
+                "datetime": "2023-01-10T18:45:00Z",
+                "volume": 1049110,
+                "lastPrice": 117.9367,
+                "openPrice": 117.7999,
+                "lowPrice": 117.69,
+                "highPrice": 118.05
+            },
+            {
+                "datetime": "2023-01-10T18:40:00Z",
+                "volume": 1674242,
+                "lastPrice": 117.7973,
+                "openPrice": 117.9,
+                "lowPrice": 117.72,
+                "highPrice": 118.25
+            },
+            {
+                "datetime": "2023-01-10T18:35:00Z",
+                "volume": 1512843,
+                "lastPrice": 117.9,
+                "openPrice": 117.36,
+                "lowPrice": 117.36,
+                "highPrice": 118.03
+            },
+            {
+                "datetime": "2023-01-10T18:30:00Z",
+                "volume": 1464573,
+                "lastPrice": 117.3684,
+                "openPrice": 117.5166,
+                "lowPrice": 117.01,
+                "highPrice": 117.53
+            },
+            {
+                "datetime": "2023-01-10T18:25:00Z",
+                "volume": 851007,
+                "lastPrice": 117.52,
+                "openPrice": 117.6791,
+                "lowPrice": 117.5,
+                "highPrice": 117.79
+            },
+            {
+                "datetime": "2023-01-10T18:20:00Z",
+                "volume": 1036410,
+                "lastPrice": 117.7,
+                "openPrice": 117.68,
+                "lowPrice": 117.4,
+                "highPrice": 117.75
+            },
+            {
+                "datetime": "2023-01-10T18:15:00Z",
+                "volume": 1096058,
+                "lastPrice": 117.6899,
+                "openPrice": 117.84,
+                "lowPrice": 117.51,
+                "highPrice": 117.96
+            },
+            {
+                "datetime": "2023-01-10T18:10:00Z",
+                "volume": 1710843,
+                "lastPrice": 117.837,
+                "openPrice": 117.73,
+                "lowPrice": 117.422,
+                "highPrice": 118.05
+            },
+            {
+                "datetime": "2023-01-10T18:05:00Z",
+                "volume": 1131563,
+                "lastPrice": 117.7371,
+                "openPrice": 117.4,
+                "lowPrice": 117.24,
+                "highPrice": 117.75
+            },
+            {
+                "datetime": "2023-01-10T18:00:00Z",
+                "volume": 1231735,
+                "lastPrice": 117.3721,
+                "openPrice": 117.4,
+                "lowPrice": 117.18,
+                "highPrice": 117.68
+            },
+            {
+                "datetime": "2023-01-10T17:55:00Z",
+                "volume": 1135544,
+                "lastPrice": 117.41,
+                "openPrice": 117.385,
+                "lowPrice": 117.12,
+                "highPrice": 117.47
+            },
+            {
+                "datetime": "2023-01-10T17:50:00Z",
+                "volume": 1217753,
+                "lastPrice": 117.395,
+                "openPrice": 117.49,
+                "lowPrice": 117.3,
+                "highPrice": 117.5799
+            },
+            {
+                "datetime": "2023-01-10T17:45:00Z",
+                "volume": 1431283,
+                "lastPrice": 117.4902,
+                "openPrice": 117.32,
+                "lowPrice": 117.23,
+                "highPrice": 117.77
+            },
+            {
+                "datetime": "2023-01-10T17:40:00Z",
+                "volume": 1636256,
+                "lastPrice": 117.32,
+                "openPrice": 117.17,
+                "lowPrice": 117.0301,
+                "highPrice": 117.56
+            },
+            {
+                "datetime": "2023-01-10T17:35:00Z",
+                "volume": 1622486,
+                "lastPrice": 117.18,
+                "openPrice": 116.57,
+                "lowPrice": 116.38,
+                "highPrice": 117.28
+            },
+            {
+                "datetime": "2023-01-10T17:30:00Z",
+                "volume": 1209707,
+                "lastPrice": 116.5601,
+                "openPrice": 116.1149,
+                "lowPrice": 116.04,
+                "highPrice": 116.66
+            },
+            {
+                "datetime": "2023-01-10T17:25:00Z",
+                "volume": 792178,
+                "lastPrice": 116.12,
+                "openPrice": 116.1795,
+                "lowPrice": 115.96,
+                "highPrice": 116.37
+            },
+            {
+                "datetime": "2023-01-10T17:20:00Z",
+                "volume": 1043953,
+                "lastPrice": 116.1832,
+                "openPrice": 116.065,
+                "lowPrice": 115.9,
+                "highPrice": 116.21
+            },
+            {
+                "datetime": "2023-01-10T17:15:00Z",
+                "volume": 930565,
+                "lastPrice": 116.065,
+                "openPrice": 116.4,
+                "lowPrice": 115.97,
+                "highPrice": 116.4499
+            },
+            {
+                "datetime": "2023-01-10T17:10:00Z",
+                "volume": 1257199,
+                "lastPrice": 116.41,
+                "openPrice": 116.2899,
+                "lowPrice": 116,
+                "highPrice": 116.55
+            },
+            {
+                "datetime": "2023-01-10T17:05:00Z",
+                "volume": 992440,
+                "lastPrice": 116.29,
+                "openPrice": 115.96,
+                "lowPrice": 115.9401,
+                "highPrice": 116.3522
+            },
+            {
+                "datetime": "2023-01-10T17:00:00Z",
+                "volume": 1716656,
+                "lastPrice": 115.9615,
+                "openPrice": 116.31,
+                "lowPrice": 115.71,
+                "highPrice": 116.3499
+            },
+            {
+                "datetime": "2023-01-10T16:55:00Z",
+                "volume": 1372185,
+                "lastPrice": 116.3199,
+                "openPrice": 116.7827,
+                "lowPrice": 116.2129,
+                "highPrice": 117.04
+            },
+            {
+                "datetime": "2023-01-10T16:50:00Z",
+                "volume": 900769,
+                "lastPrice": 116.78,
+                "openPrice": 116.7448,
+                "lowPrice": 116.64,
+                "highPrice": 116.939
+            },
+            {
+                "datetime": "2023-01-10T16:45:00Z",
+                "volume": 1666356,
+                "lastPrice": 116.7415,
+                "openPrice": 116.7926,
+                "lowPrice": 116.54,
+                "highPrice": 117.03
+            },
+            {
+                "datetime": "2023-01-10T16:40:00Z",
+                "volume": 1177542,
+                "lastPrice": 116.7918,
+                "openPrice": 116.34,
+                "lowPrice": 116.34,
+                "highPrice": 116.92
+            },
+            {
+                "datetime": "2023-01-10T16:35:00Z",
+                "volume": 1020424,
+                "lastPrice": 116.32,
+                "openPrice": 116.27,
+                "lowPrice": 116.21,
+                "highPrice": 116.58
+            },
+            {
+                "datetime": "2023-01-10T16:30:00Z",
+                "volume": 1629545,
+                "lastPrice": 116.29,
+                "openPrice": 116.56,
+                "lowPrice": 116.1801,
+                "highPrice": 116.99
+            },
+            {
+                "datetime": "2023-01-10T16:25:00Z",
+                "volume": 2004237,
+                "lastPrice": 116.575,
+                "openPrice": 116.36,
+                "lowPrice": 116.06,
+                "highPrice": 117.08
+            },
+            {
+                "datetime": "2023-01-10T16:20:00Z",
+                "volume": 1324820,
+                "lastPrice": 116.37,
+                "openPrice": 115.849,
+                "lowPrice": 115.72,
+                "highPrice": 116.4147
+            },
+            {
+                "datetime": "2023-01-10T16:15:00Z",
+                "volume": 1494665,
+                "lastPrice": 115.85,
+                "openPrice": 116.31,
+                "lowPrice": 115.76,
+                "highPrice": 116.59
+            },
+            {
+                "datetime": "2023-01-10T16:10:00Z",
+                "volume": 1525715,
+                "lastPrice": 116.31,
+                "openPrice": 116.02,
+                "lowPrice": 115.8,
+                "highPrice": 116.69
+            },
+            {
+                "datetime": "2023-01-10T16:05:00Z",
+                "volume": 1599516,
+                "lastPrice": 116.0115,
+                "openPrice": 116.13,
+                "lowPrice": 115.78,
+                "highPrice": 116.41
+            },
+            {
+                "datetime": "2023-01-10T16:00:00Z",
+                "volume": 1777190,
+                "lastPrice": 116.13,
+                "openPrice": 115.9699,
+                "lowPrice": 115.44,
+                "highPrice": 116.18
+            },
+            {
+                "datetime": "2023-01-10T15:55:00Z",
+                "volume": 1948908,
+                "lastPrice": 115.965,
+                "openPrice": 116.08,
+                "lowPrice": 115.82,
+                "highPrice": 116.4699
+            },
+            {
+                "datetime": "2023-01-10T15:50:00Z",
+                "volume": 2535335,
+                "lastPrice": 116.07,
+                "openPrice": 115.53,
+                "lowPrice": 115.46,
+                "highPrice": 116.545
+            },
+            {
+                "datetime": "2023-01-10T15:45:00Z",
+                "volume": 3064145,
+                "lastPrice": 115.53,
+                "openPrice": 115.27,
+                "lowPrice": 114.92,
+                "highPrice": 115.9
+            },
+            {
+                "datetime": "2023-01-10T15:40:00Z",
+                "volume": 3252324,
+                "lastPrice": 115.27,
+                "openPrice": 116.25,
+                "lowPrice": 115.21,
+                "highPrice": 116.56
+            },
+            {
+                "datetime": "2023-01-10T15:35:00Z",
+                "volume": 2422455,
+                "lastPrice": 116.2637,
+                "openPrice": 116.36,
+                "lowPrice": 116.02,
+                "highPrice": 116.6
+            },
+            {
+                "datetime": "2023-01-10T15:30:00Z",
+                "volume": 3642699,
+                "lastPrice": 116.36,
+                "openPrice": 117.865,
+                "lowPrice": 116.24,
+                "highPrice": 117.87
+            },
+            {
+                "datetime": "2023-01-10T15:25:00Z",
+                "volume": 2097677,
+                "lastPrice": 117.85,
+                "openPrice": 118.33,
+                "lowPrice": 117.716,
+                "highPrice": 118.6679
+            },
+            {
+                "datetime": "2023-01-10T15:20:00Z",
+                "volume": 2276214,
+                "lastPrice": 118.315,
+                "openPrice": 118.97,
+                "lowPrice": 118.0501,
+                "highPrice": 119.15
+            },
+            {
+                "datetime": "2023-01-10T15:15:00Z",
+                "volume": 2880290,
+                "lastPrice": 118.9899,
+                "openPrice": 119.32,
+                "lowPrice": 118.84,
+                "highPrice": 119.76
+            },
+            {
+                "datetime": "2023-01-10T15:10:00Z",
+                "volume": 3220927,
+                "lastPrice": 119.32,
+                "openPrice": 118.23,
+                "lowPrice": 117.9761,
+                "highPrice": 119.4501
+            },
+            {
+                "datetime": "2023-01-10T15:05:00Z",
+                "volume": 2508098,
+                "lastPrice": 118.2171,
+                "openPrice": 117.91,
+                "lowPrice": 117.58,
+                "highPrice": 118.41
+            },
+            {
+                "datetime": "2023-01-10T15:00:00Z",
+                "volume": 2731631,
+                "lastPrice": 117.89,
+                "openPrice": 118.92,
+                "lowPrice": 117.6916,
+                "highPrice": 118.95
+            },
+            {
+                "datetime": "2023-01-10T14:55:00Z",
+                "volume": 3280679,
+                "lastPrice": 118.922,
+                "openPrice": 118.32,
+                "lowPrice": 117.94,
+                "highPrice": 119.34
+            },
+            {
+                "datetime": "2023-01-10T14:50:00Z",
+                "volume": 4352654,
+                "lastPrice": 118.32,
+                "openPrice": 118.33,
+                "lowPrice": 117.36,
+                "highPrice": 118.93
+            },
+            {
+                "datetime": "2023-01-10T14:45:00Z",
+                "volume": 4708432,
+                "lastPrice": 118.32,
+                "openPrice": 119.2499,
+                "lowPrice": 117.61,
+                "highPrice": 119.6145
+            },
+            {
+                "datetime": "2023-01-10T14:40:00Z",
+                "volume": 4675097,
+                "lastPrice": 119.2499,
+                "openPrice": 121.3,
+                "lowPrice": 118.91,
+                "highPrice": 121.3
+            },
+            {
+                "datetime": "2023-01-10T14:35:00Z",
+                "volume": 3571286,
+                "lastPrice": 121.2613,
+                "openPrice": 122.2625,
+                "lowPrice": 121.05,
+                "highPrice": 122.68
+            },
+            {
+                "datetime": "2023-01-10T14:30:00Z",
+                "volume": 5954522,
+                "lastPrice": 122.24,
+                "openPrice": 121.07,
+                "lowPrice": 120.3,
+                "highPrice": 122.76
+            }
+        ],
+        "0P000000GY": [
+            {
+                "datetime": "2023-01-10T21:00:00Z",
+                "volume": 4006802,
+                "lastPrice": 130.73,
+                "openPrice": 130.74,
+                "lowPrice": 130.7,
+                "highPrice": 130.75
+            },
+            {
+                "datetime": "2023-01-10T20:55:00Z",
+                "volume": 1897642,
+                "lastPrice": 130.73,
+                "openPrice": 130.29,
+                "lowPrice": 130.27,
+                "highPrice": 130.74
+            },
+            {
+                "datetime": "2023-01-10T20:50:00Z",
+                "volume": 1034618,
+                "lastPrice": 130.29,
+                "openPrice": 130.14,
+                "lowPrice": 130.14,
+                "highPrice": 130.38
+            },
+            {
+                "datetime": "2023-01-10T20:45:00Z",
+                "volume": 452482,
+                "lastPrice": 130.14,
+                "openPrice": 130.09,
+                "lowPrice": 130.0329,
+                "highPrice": 130.25
+            },
+            {
+                "datetime": "2023-01-10T20:40:00Z",
+                "volume": 530960,
+                "lastPrice": 130.1,
+                "openPrice": 130.22,
+                "lowPrice": 130.01,
+                "highPrice": 130.24
+            },
+            {
+                "datetime": "2023-01-10T20:35:00Z",
+                "volume": 414530,
+                "lastPrice": 130.2239,
+                "openPrice": 130.33,
+                "lowPrice": 130.15,
+                "highPrice": 130.37
+            },
+            {
+                "datetime": "2023-01-10T20:30:00Z",
+                "volume": 512641,
+                "lastPrice": 130.3236,
+                "openPrice": 130.145,
+                "lowPrice": 130.145,
+                "highPrice": 130.34
+            },
+            {
+                "datetime": "2023-01-10T20:25:00Z",
+                "volume": 347922,
+                "lastPrice": 130.14,
+                "openPrice": 130.155,
+                "lowPrice": 130.11,
+                "highPrice": 130.23
+            },
+            {
+                "datetime": "2023-01-10T20:20:00Z",
+                "volume": 531515,
+                "lastPrice": 130.16,
+                "openPrice": 130.1605,
+                "lowPrice": 130.04,
+                "highPrice": 130.25
+            },
+            {
+                "datetime": "2023-01-10T20:15:00Z",
+                "volume": 476132,
+                "lastPrice": 130.1605,
+                "openPrice": 130.02,
+                "lowPrice": 130,
+                "highPrice": 130.195
+            },
+            {
+                "datetime": "2023-01-10T20:10:00Z",
+                "volume": 483511,
+                "lastPrice": 130.025,
+                "openPrice": 129.96,
+                "lowPrice": 129.8,
+                "highPrice": 130.05
+            },
+            {
+                "datetime": "2023-01-10T20:05:00Z",
+                "volume": 448081,
+                "lastPrice": 129.965,
+                "openPrice": 130.0201,
+                "lowPrice": 129.76,
+                "highPrice": 130.075
+            },
+            {
+                "datetime": "2023-01-10T20:00:00Z",
+                "volume": 580297,
+                "lastPrice": 130.03,
+                "openPrice": 130.115,
+                "lowPrice": 129.88,
+                "highPrice": 130.135
+            },
+            {
+                "datetime": "2023-01-10T19:55:00Z",
+                "volume": 333720,
+                "lastPrice": 130.115,
+                "openPrice": 130.09,
+                "lowPrice": 130,
+                "highPrice": 130.1765
+            },
+            {
+                "datetime": "2023-01-10T19:50:00Z",
+                "volume": 371327,
+                "lastPrice": 130.08,
+                "openPrice": 130.1475,
+                "lowPrice": 129.995,
+                "highPrice": 130.2
+            },
+            {
+                "datetime": "2023-01-10T19:45:00Z",
+                "volume": 480207,
+                "lastPrice": 130.15,
+                "openPrice": 130.105,
+                "lowPrice": 129.98,
+                "highPrice": 130.15
+            },
+            {
+                "datetime": "2023-01-10T19:40:00Z",
+                "volume": 345596,
+                "lastPrice": 130.105,
+                "openPrice": 130.1738,
+                "lowPrice": 130.05,
+                "highPrice": 130.2
+            },
+            {
+                "datetime": "2023-01-10T19:35:00Z",
+                "volume": 321779,
+                "lastPrice": 130.17,
+                "openPrice": 130.31,
+                "lowPrice": 130.13,
+                "highPrice": 130.365
+            },
+            {
+                "datetime": "2023-01-10T19:30:00Z",
+                "volume": 449646,
+                "lastPrice": 130.3072,
+                "openPrice": 130.37,
+                "lowPrice": 130.22,
+                "highPrice": 130.42
+            },
+            {
+                "datetime": "2023-01-10T19:25:00Z",
+                "volume": 427060,
+                "lastPrice": 130.3612,
+                "openPrice": 130.3,
+                "lowPrice": 130.18,
+                "highPrice": 130.41
+            },
+            {
+                "datetime": "2023-01-10T19:20:00Z",
+                "volume": 525967,
+                "lastPrice": 130.3029,
+                "openPrice": 130.42,
+                "lowPrice": 130.28,
+                "highPrice": 130.51
+            },
+            {
+                "datetime": "2023-01-10T19:15:00Z",
+                "volume": 449705,
+                "lastPrice": 130.425,
+                "openPrice": 130.435,
+                "lowPrice": 130.3939,
+                "highPrice": 130.535
+            },
+            {
+                "datetime": "2023-01-10T19:10:00Z",
+                "volume": 412679,
+                "lastPrice": 130.44,
+                "openPrice": 130.375,
+                "lowPrice": 130.35,
+                "highPrice": 130.4999
+            },
+            {
+                "datetime": "2023-01-10T19:05:00Z",
+                "volume": 535098,
+                "lastPrice": 130.38,
+                "openPrice": 130.4554,
+                "lowPrice": 130.23,
+                "highPrice": 130.46
+            },
+            {
+                "datetime": "2023-01-10T19:00:00Z",
+                "volume": 951221,
+                "lastPrice": 130.46,
+                "openPrice": 130.23,
+                "lowPrice": 130.23,
+                "highPrice": 130.69
+            },
+            {
+                "datetime": "2023-01-10T18:55:00Z",
+                "volume": 773731,
+                "lastPrice": 130.225,
+                "openPrice": 130.0885,
+                "lowPrice": 129.97,
+                "highPrice": 130.27
+            },
+            {
+                "datetime": "2023-01-10T18:50:00Z",
+                "volume": 537963,
+                "lastPrice": 130.09,
+                "openPrice": 130.21,
+                "lowPrice": 130.0012,
+                "highPrice": 130.24
+            },
+            {
+                "datetime": "2023-01-10T18:45:00Z",
+                "volume": 613059,
+                "lastPrice": 130.215,
+                "openPrice": 129.805,
+                "lowPrice": 129.795,
+                "highPrice": 130.215
+            },
+            {
+                "datetime": "2023-01-10T18:40:00Z",
+                "volume": 485693,
+                "lastPrice": 129.81,
+                "openPrice": 129.91,
+                "lowPrice": 129.775,
+                "highPrice": 130.01
+            },
+            {
+                "datetime": "2023-01-10T18:35:00Z",
+                "volume": 386732,
+                "lastPrice": 129.8987,
+                "openPrice": 129.79,
+                "lowPrice": 129.76,
+                "highPrice": 129.95
+            },
+            {
+                "datetime": "2023-01-10T18:30:00Z",
+                "volume": 342994,
+                "lastPrice": 129.7901,
+                "openPrice": 129.6501,
+                "lowPrice": 129.57,
+                "highPrice": 129.84
+            },
+            {
+                "datetime": "2023-01-10T18:25:00Z",
+                "volume": 261865,
+                "lastPrice": 129.6599,
+                "openPrice": 129.745,
+                "lowPrice": 129.6457,
+                "highPrice": 129.76
+            },
+            {
+                "datetime": "2023-01-10T18:20:00Z",
+                "volume": 575919,
+                "lastPrice": 129.75,
+                "openPrice": 129.5996,
+                "lowPrice": 129.42,
+                "highPrice": 129.78
+            },
+            {
+                "datetime": "2023-01-10T18:15:00Z",
+                "volume": 540955,
+                "lastPrice": 129.5901,
+                "openPrice": 129.66,
+                "lowPrice": 129.5,
+                "highPrice": 129.675
+            },
+            {
+                "datetime": "2023-01-10T18:10:00Z",
+                "volume": 687649,
+                "lastPrice": 129.665,
+                "openPrice": 129.9501,
+                "lowPrice": 129.665,
+                "highPrice": 129.98
+            },
+            {
+                "datetime": "2023-01-10T18:05:00Z",
+                "volume": 655068,
+                "lastPrice": 129.9501,
+                "openPrice": 129.6824,
+                "lowPrice": 129.62,
+                "highPrice": 130
+            },
+            {
+                "datetime": "2023-01-10T18:00:00Z",
+                "volume": 496056,
+                "lastPrice": 129.68,
+                "openPrice": 129.73,
+                "lowPrice": 129.61,
+                "highPrice": 129.85
+            },
+            {
+                "datetime": "2023-01-10T17:55:00Z",
+                "volume": 283488,
+                "lastPrice": 129.73,
+                "openPrice": 129.71,
+                "lowPrice": 129.665,
+                "highPrice": 129.7908
+            },
+            {
+                "datetime": "2023-01-10T17:50:00Z",
+                "volume": 393120,
+                "lastPrice": 129.71,
+                "openPrice": 129.66,
+                "lowPrice": 129.63,
+                "highPrice": 129.86
+            },
+            {
+                "datetime": "2023-01-10T17:45:00Z",
+                "volume": 326884,
+                "lastPrice": 129.66,
+                "openPrice": 129.57,
+                "lowPrice": 129.47,
+                "highPrice": 129.67
+            },
+            {
+                "datetime": "2023-01-10T17:40:00Z",
+                "volume": 520162,
+                "lastPrice": 129.58,
+                "openPrice": 129.77,
+                "lowPrice": 129.56,
+                "highPrice": 129.82
+            },
+            {
+                "datetime": "2023-01-10T17:35:00Z",
+                "volume": 581831,
+                "lastPrice": 129.765,
+                "openPrice": 129.2683,
+                "lowPrice": 129.24,
+                "highPrice": 129.79
+            },
+            {
+                "datetime": "2023-01-10T17:30:00Z",
+                "volume": 391528,
+                "lastPrice": 129.25,
+                "openPrice": 129.11,
+                "lowPrice": 129.0517,
+                "highPrice": 129.37
+            },
+            {
+                "datetime": "2023-01-10T17:25:00Z",
+                "volume": 392549,
+                "lastPrice": 129.12,
+                "openPrice": 129.2182,
+                "lowPrice": 129.04,
+                "highPrice": 129.24
+            },
+            {
+                "datetime": "2023-01-10T17:20:00Z",
+                "volume": 431179,
+                "lastPrice": 129.2163,
+                "openPrice": 129.1,
+                "lowPrice": 128.97,
+                "highPrice": 129.23
+            },
+            {
+                "datetime": "2023-01-10T17:15:00Z",
+                "volume": 448018,
+                "lastPrice": 129.1,
+                "openPrice": 129.15,
+                "lowPrice": 128.97,
+                "highPrice": 129.1799
+            },
+            {
+                "datetime": "2023-01-10T17:10:00Z",
+                "volume": 574659,
+                "lastPrice": 129.16,
+                "openPrice": 128.93,
+                "lowPrice": 128.89,
+                "highPrice": 129.24
+            },
+            {
+                "datetime": "2023-01-10T17:05:00Z",
+                "volume": 438336,
+                "lastPrice": 128.94,
+                "openPrice": 128.48,
+                "lowPrice": 128.48,
+                "highPrice": 128.94
+            },
+            {
+                "datetime": "2023-01-10T17:00:00Z",
+                "volume": 723398,
+                "lastPrice": 128.48,
+                "openPrice": 128.87,
+                "lowPrice": 128.45,
+                "highPrice": 128.87
+            },
+            {
+                "datetime": "2023-01-10T16:55:00Z",
+                "volume": 519417,
+                "lastPrice": 128.88,
+                "openPrice": 128.8,
+                "lowPrice": 128.795,
+                "highPrice": 129.08
+            },
+            {
+                "datetime": "2023-01-10T16:50:00Z",
+                "volume": 492433,
+                "lastPrice": 128.7958,
+                "openPrice": 128.97,
+                "lowPrice": 128.66,
+                "highPrice": 129.05
+            },
+            {
+                "datetime": "2023-01-10T16:45:00Z",
+                "volume": 601330,
+                "lastPrice": 128.965,
+                "openPrice": 128.92,
+                "lowPrice": 128.73,
+                "highPrice": 129.08
+            },
+            {
+                "datetime": "2023-01-10T16:40:00Z",
+                "volume": 299153,
+                "lastPrice": 128.925,
+                "openPrice": 128.83,
+                "lowPrice": 128.825,
+                "highPrice": 128.995
+            },
+            {
+                "datetime": "2023-01-10T16:35:00Z",
+                "volume": 394376,
+                "lastPrice": 128.825,
+                "openPrice": 128.94,
+                "lowPrice": 128.79,
+                "highPrice": 129.0383
+            },
+            {
+                "datetime": "2023-01-10T16:30:00Z",
+                "volume": 618642,
+                "lastPrice": 128.95,
+                "openPrice": 129.02,
+                "lowPrice": 128.77,
+                "highPrice": 129.19
+            },
+            {
+                "datetime": "2023-01-10T16:25:00Z",
+                "volume": 654917,
+                "lastPrice": 129.02,
+                "openPrice": 129.13,
+                "lowPrice": 128.8428,
+                "highPrice": 129.197
+            },
+            {
+                "datetime": "2023-01-10T16:20:00Z",
+                "volume": 588476,
+                "lastPrice": 129.13,
+                "openPrice": 128.8,
+                "lowPrice": 128.7939,
+                "highPrice": 129.23
+            },
+            {
+                "datetime": "2023-01-10T16:15:00Z",
+                "volume": 649050,
+                "lastPrice": 128.8024,
+                "openPrice": 129.03,
+                "lowPrice": 128.73,
+                "highPrice": 129.1
+            },
+            {
+                "datetime": "2023-01-10T16:10:00Z",
+                "volume": 767546,
+                "lastPrice": 129.02,
+                "openPrice": 128.8703,
+                "lowPrice": 128.83,
+                "highPrice": 129.2
+            },
+            {
+                "datetime": "2023-01-10T16:05:00Z",
+                "volume": 605555,
+                "lastPrice": 128.88,
+                "openPrice": 129.095,
+                "lowPrice": 128.8,
+                "highPrice": 129.1
+            },
+            {
+                "datetime": "2023-01-10T16:00:00Z",
+                "volume": 614603,
+                "lastPrice": 129.09,
+                "openPrice": 129.1,
+                "lowPrice": 128.935,
+                "highPrice": 129.13
+            },
+            {
+                "datetime": "2023-01-10T15:55:00Z",
+                "volume": 754230,
+                "lastPrice": 129.09,
+                "openPrice": 128.82,
+                "lowPrice": 128.75,
+                "highPrice": 129.2
+            },
+            {
+                "datetime": "2023-01-10T15:50:00Z",
+                "volume": 759223,
+                "lastPrice": 128.819,
+                "openPrice": 128.465,
+                "lowPrice": 128.44,
+                "highPrice": 128.94
+            },
+            {
+                "datetime": "2023-01-10T15:45:00Z",
+                "volume": 1056338,
+                "lastPrice": 128.46,
+                "openPrice": 128.22,
+                "lowPrice": 128.12,
+                "highPrice": 128.56
+            },
+            {
+                "datetime": "2023-01-10T15:40:00Z",
+                "volume": 1148671,
+                "lastPrice": 128.2316,
+                "openPrice": 128.84,
+                "lowPrice": 128.2316,
+                "highPrice": 128.98
+            },
+            {
+                "datetime": "2023-01-10T15:35:00Z",
+                "volume": 693088,
+                "lastPrice": 128.835,
+                "openPrice": 128.81,
+                "lowPrice": 128.73,
+                "highPrice": 128.95
+            },
+            {
+                "datetime": "2023-01-10T15:30:00Z",
+                "volume": 1141447,
+                "lastPrice": 128.8,
+                "openPrice": 129.4,
+                "lowPrice": 128.75,
+                "highPrice": 129.4
+            },
+            {
+                "datetime": "2023-01-10T15:25:00Z",
+                "volume": 1011776,
+                "lastPrice": 129.4001,
+                "openPrice": 129.89,
+                "lowPrice": 129.33,
+                "highPrice": 130
+            },
+            {
+                "datetime": "2023-01-10T15:20:00Z",
+                "volume": 659831,
+                "lastPrice": 129.9,
+                "openPrice": 130.15,
+                "lowPrice": 129.785,
+                "highPrice": 130.23
+            },
+            {
+                "datetime": "2023-01-10T15:15:00Z",
+                "volume": 1124375,
+                "lastPrice": 130.15,
+                "openPrice": 130.3415,
+                "lowPrice": 130.14,
+                "highPrice": 130.8367
+            },
+            {
+                "datetime": "2023-01-10T15:10:00Z",
+                "volume": 1070222,
+                "lastPrice": 130.34,
+                "openPrice": 129.97,
+                "lowPrice": 129.88,
+                "highPrice": 130.671
+            },
+            {
+                "datetime": "2023-01-10T15:05:00Z",
+                "volume": 834024,
+                "lastPrice": 129.965,
+                "openPrice": 129.87,
+                "lowPrice": 129.84,
+                "highPrice": 130.2
+            },
+            {
+                "datetime": "2023-01-10T15:00:00Z",
+                "volume": 1038375,
+                "lastPrice": 129.88,
+                "openPrice": 129.99,
+                "lowPrice": 129.61,
+                "highPrice": 130.14
+            },
+            {
+                "datetime": "2023-01-10T14:55:00Z",
+                "volume": 1114364,
+                "lastPrice": 129.99,
+                "openPrice": 130.0601,
+                "lowPrice": 129.775,
+                "highPrice": 130.29
+            },
+            {
+                "datetime": "2023-01-10T14:50:00Z",
+                "volume": 1240916,
+                "lastPrice": 130.07,
+                "openPrice": 129.889,
+                "lowPrice": 129.57,
+                "highPrice": 130.25
+            },
+            {
+                "datetime": "2023-01-10T14:45:00Z",
+                "volume": 1053822,
+                "lastPrice": 129.89,
+                "openPrice": 130.095,
+                "lowPrice": 129.51,
+                "highPrice": 130.41
+            },
+            {
+                "datetime": "2023-01-10T14:40:00Z",
+                "volume": 1055795,
+                "lastPrice": 130.1,
+                "openPrice": 130.374,
+                "lowPrice": 129.9,
+                "highPrice": 130.45
+            },
+            {
+                "datetime": "2023-01-10T14:35:00Z",
+                "volume": 1161447,
+                "lastPrice": 130.37,
+                "openPrice": 131.19,
+                "lowPrice": 130.2201,
+                "highPrice": 131.21
+            },
+            {
+                "datetime": "2023-01-10T14:30:00Z",
+                "volume": 2175441,
+                "lastPrice": 131.19,
+                "openPrice": 130.26,
+                "lowPrice": 129.795,
+                "highPrice": 131.2636
+            },
+            {
+                "datetime": "2023-01-10T14:25:00Z",
+                "volume": 164,
+                "lastPrice": 130.26,
+                "openPrice": 130.26,
+                "lowPrice": 130.26,
+                "highPrice": 130.26
+            }
+        ]
+    }
 ]
 
 

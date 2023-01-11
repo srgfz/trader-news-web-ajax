@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="#">
     <link rel="shortcut icon" href="#" type="image/x-icon">
+    <!-- Enlazo los iconos de Bootstrap: -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 
 
@@ -26,7 +28,57 @@
 
         <!--********** Inicio del main **********-->
         <main class="main">
-            <canvas class="canvas" id="canvas" width="400" height="100"></canvas>
+            <div class="cards">
+                <div class="card">
+                    <div class="card__header">
+                        <i class="bi bi-star-fill card__icon"></i>
+                        <h2 class="card__title">
+                            Apple (AAPL)
+                        </h2>
+                        <div class="card__graphic">
+                            <canvas class="card__canvas" id="canvas" width="500" height="250"></canvas>
+                            <ul class="card__buttons">
+                                <li class="card__button card__button--active">1D</li>
+                                <li class="card__button">3M</li>
+                                <li class="card__button">1Y</li>
+                                <li class="card__button">5Y</li>
+                                <li class="card__button">MAX</li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class="card__main">
+                        <ul class="card__list">
+                            <li class="card__item">
+                                <div class="">
+                                    Mercado
+                                </div>
+                                <div class="">
+                                    XNAS (NASDAQ)
+                                </div>
+                            </li>
+                            <li class="card__item">
+                                <div class="">
+                                    Sector
+                                </div>
+                                <div class="">
+                                    Consumer Cyclical
+                                </div>
+                            </li>
+                            <li class="card__item">
+                                <div class="">
+                                    Industria
+                                </div>
+                                <div class="">
+                                    Auto Manufacturers
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
         </main>
         <!--********** Fin del main **********-->
         <!--********** Comienzo del footer **********-->
@@ -36,7 +88,12 @@
         <!--********** Fin del footer **********-->
 
     </div>
+    <!-- Script de Chart.js: -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Script de la clase Empresa: -->
+    <script type="module" src="./js/Empresa.js"></script>
+
+    <script src="./js/elementosJSONs.js"></script>
     <script src="./js/script.js"></script>
 </body>
 

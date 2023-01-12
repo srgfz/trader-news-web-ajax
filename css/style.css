@@ -48,7 +48,8 @@ a {
 .card {
     color: black;
     border-radius: 15px;
-    max-width: 400px;
+    max-width: 450px;
+    width: 450px;
     padding: 5px 25px;
     transition: transform 1.2s;
 }
@@ -74,7 +75,7 @@ a {
 .card__buttons {
     display: flex;
     justify-content: space-evenly;
-    background-color: rgba(12, 85, 12, 0.611);
+    background-color: rgba(34, 95, 34, 0.611);
     margin: 0;
 }
 
@@ -137,4 +138,9 @@ a {
 
 .card__icon--fav {
     color: rgb(226, 176, 23);
+}
+
+
+.item__title {
+    font-weight: bold;
 }

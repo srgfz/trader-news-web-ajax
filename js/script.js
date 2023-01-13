@@ -7,7 +7,11 @@ import { Stock } from "./Stock.js"
 let cards = document.getElementById("cards")
 
 //
-const rapidApiKey = "#"
+const rapidApiKey = "dfab6b8a78msh52678a67250e4dep1c908ejsn0a63e55f3796"
+
+let graphicHeight = 350
+let graphicWidth = 600
+let graphic
 
 let myPortfolio = []
 let searchPerformanceIds = ""
@@ -42,11 +46,8 @@ const addCompanyToMyPortfolio = (companyToAdd) => {
 
 const removeCompanyToMyPortfolio = (companyToRemove) => {
     myPortfolio = JSON.parse(localStorage.getItem("myPortfolio"))
-    console.log(myPortfolio)
     myPortfolio.map((company, index) => {
-        console.log(company, index)
         if (companyToRemove.id == company.id) {
-            console.log("borra")
             myPortfolio.splice(index, 1)
         }
     })
@@ -106,7 +107,12 @@ const rapidApiReturn = async (method, rapidApiHost, fetchUrl, apiKey = rapidApiK
 }
 
 
-
+const printNotFoundMessage = () => {
+    let notFoundMessage = document.createElement("P")
+    notFoundMessage.classList.add("cards__message")
+    notFoundMessage.textContent = "-- Actualmente no disponemos de ningún registro para la empresa solicitada --"
+    cards.appendChild(notFoundMessage)
+}
 
 const apiRequests = async () => {
     if (!showMyPortfolio) {//Si busca alguna acción
@@ -159,12 +165,15 @@ const generateChartJs = (canvas, values) => {
             },
         }
     }
-    new Chart(canvas, config)
+    if (graphic) {//Si tengo el gráfico lo destruyo para poder atualizarlo con los distintos datos de las series temporales
+        graphic.destroy()
+    }
+    graphic = new Chart(canvas, config)
 }
 
 
 
-const takeDataforGraphic = (company, dataSetOption = "trimester") => {
+const takeDataforGraphic = (company, dataSetOption = "year") => {
     let values = []
     let labels = []
     if (dataSetOption == "trimester") {
@@ -205,8 +214,8 @@ const generateGraphic = (company) => {
     let cardCanvas = document.createElement("CANVAS")
     cardCanvas.classList.add("card__canvas")
     cardCanvas.setAttribute("ID", `canvas${company.name}`)
-    cardCanvas.setAttribute("WIDTH", "500")
-    cardCanvas.setAttribute("HEIGHT", "250")
+    cardCanvas.setAttribute("WIDTH", graphicWidth)
+    cardCanvas.setAttribute("HEIGHT", graphicHeight)
     let ctx = cardCanvas.getContext("2d")
     //canvasContainer.innerHTML = `<canvas class="card__canvas" id="canvas${company.id}" width="500" height="250"></canvas>`
     generateChartJs(ctx, takeDataforGraphic(company))
@@ -271,6 +280,9 @@ const generateButtons = (company) => {
         if (company.stock[stockDataSet].length) {//Si el set de datos tiene datos muestro los botones para dicho set
             let cardButton = document.createElement("LI")
             cardButton.classList.add("card__button")
+            if (stockDataSet == "year") {//Coloreo por defecto el botón de 1Y
+                cardButton.classList.add("card__button--active")
+            }
             //Mostramos el contenido del botón según los datos disponibles que tenga la acción
             let textContentCardButton = stockDataSet == "day" ? "1D" : stockDataSet == "trimester" ? "3M" : stockDataSet == "year" ? "1Y" : stockDataSet == "lustrum" ? "5Y" : "MAX"
             cardButton.textContent = textContentCardButton
@@ -304,7 +316,7 @@ const generateCardHeader = (company) => {
     cardGraphic.classList.add("card__graphic")
     //Generamos el gráfico en canvas con chart.js u los botónes de los set de datos de las distintas cotizaciones y los añadimos a su contenedor
     appendChildFunction(cardGraphic, [generateGraphic(company), generateButtons(company)])
-    appendChildFunction(cardHeader, [cardIcon, cardId, cardTitle, cardGraphic])
+    appendChildFunction(cardHeader, [cardId, cardIcon, cardTitle, cardGraphic])//El id será el primer elemento del header y estará oculto
     return cardHeader
 }
 
@@ -323,12 +335,12 @@ const generateGraphicCards = () => {
     companies.map(company => {//Para cada empresa creo su tarjeta
         if (company.stock) {//Solo muestro los resultados de las empresas que tengan datos de cotizaciones 
             fragmentCards.appendChild(generateCard(company))
+        } else {//Si la empresa no tiene cotizaciones lo meustro en un mensaje
+            printNotFoundMessage()
         }
     })
     cards.appendChild(fragmentCards)
 }
-
-
 
 
 const handleClick = (ev) => {
@@ -336,7 +348,7 @@ const handleClick = (ev) => {
     if (btn.id == "addMyPortfolio") {//Si pulsa sobre el botón de favoritos
         btn.classList.toggle("card__icon--fav")//Coloreamos el botón
         //Guardamos el nombre de la empresa que hemos pulsado
-        let performanceId = btn.nextElementSibling.textContent
+        let performanceId = btn.previousElementSibling.textContent
         //Guardo el objeto completo de la empresa seleccionada:
         let companySelected
         companies.map(company => {
@@ -348,9 +360,25 @@ const handleClick = (ev) => {
             addCompanyToMyPortfolio(companySelected)
         } else {//quito la empresa de mi portfolio
             removeCompanyToMyPortfolio(companySelected)
-            //Elimino la tarjeta
-            btn.parentElement.parentElement.remove()
+            if (showMyPortfolio) {//Si la elimino desde mi portfolio la tarjeta desaparece, si es desde el buscador la tarjeta permanece
+                //Elimino la tarjeta
+                btn.parentElement.parentElement.remove()
+            }
         }
+    } else if (btn.classList.contains("card__button")) {//Si pulsa sobre algún botón de las cotizaciones históricas
+        let btns = Array.from(btn.parentElement.querySelectorAll(".card__button"))//Guardo todos los botones de esa tarjeta
+        let canvas = btn.parentElement.previousElementSibling//Guardamos el canvas correspondiente al elemento pulsado
+        let ctx = canvas.getContext("2d")//Guardamos su contexto
+        let companyId = btn.parentElement.parentElement.parentElement.children[0].textContent//Guardo el id de la tarjeta seleccionada
+        btns.map(btn => {//Recorro los botones eliminando la clase active
+            btn.classList.remove("card__button--active")
+        })
+        btn.classList.add("card__button--active")//Coloreo el botón seleccionado
+        let dataSet = btn.textContent == "1D" ? "day" : btn.textContent == "3M" ? "trimester" : btn.textContent == "1Y" ? "year" : btn.textContent == "5Y" ? "lustrum" : "max"
+
+        generateChartJs(ctx, takeDataforGraphic(companies[0], dataSet))
+
+
     }
 }
 

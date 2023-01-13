@@ -144,3 +144,7 @@ a {
 .item__title {
     font-weight: bold;
 }
+
+.displayNone {
+    display: none;
+}

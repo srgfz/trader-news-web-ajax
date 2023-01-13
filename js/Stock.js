@@ -1,7 +1,7 @@
 export class Stock {
     //Constructor
     constructor(day, trimester, year, lustrum, max) {
-        this.day = day;
+        this.day = day
         this.trimester = trimester;
         this.year = year;
         this.lustrum = lustrum;

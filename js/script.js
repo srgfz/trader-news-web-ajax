@@ -7,7 +7,7 @@ import { Stock } from "./Stock.js"
 let cards = document.getElementById("cards")
 
 //
-const rapidApiKey = "dfab6b8a78msh52678a67250e4dep1c908ejsn0a63e55f3796"
+const rapidApiKey = "#"
 
 let graphicHeight = 350
 let graphicWidth = 600

@@ -3,15 +3,24 @@
 
 /* Le doy un fondo y un formato general a la página: */
 
+:root {
+    --color-primary: rgba(186, 220, 186, 0.487);
+    --color-secondary: rgba(34, 95, 34, 0.611);
+    --color-tertiary: #161616;
+    --color-graphic: rgba(171, 171, 171, 0.802);
+    --color-fav: rgb(226, 176, 23);
+    --font-titles: Verdana;
+    --font-primary: Roboto;
+}
+
 body {
-    background: url(#);
     background-color: #161616;
-    background-size: cover;
-    background-repeat: no-repeat;
+    min-width: 350px;
+    max-width: 1600px;
     text-align: center;
-    margin: 0;
+    margin: 0 auto;
     color: whitesmoke;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: var(--font-primary), Verdana, Geneva, Tahoma, sans-serif;
 }
 
 
@@ -60,7 +69,7 @@ a {
 
 .card__header {
     position: relative;
-    background-color: rgba(171, 171, 171, 0.802);
+    background-color: var(--color-graphic);
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
@@ -76,7 +85,8 @@ a {
 .card__buttons {
     display: flex;
     justify-content: space-evenly;
-    background-color: rgba(34, 95, 34, 0.611);
+    background-color: var(--color-primary);
+    ;
     margin: 0;
 }
 
@@ -87,11 +97,13 @@ a {
 }
 
 .card__button:hover {
-    background-color: rgb(186, 220, 186);
+    background-color: var(--color-secondary);
+    ;
 }
 
 .card__button--active {
-    background-color: rgb(186, 220, 186);
+    background-color: var(--color-secondary);
+    ;
 }
 
 .card__main {
@@ -115,7 +127,8 @@ a {
 }
 
 .card__title:hover {
-    color: rgb(7, 127, 7);
+    color: var(--color-primary);
+    ;
 }
 
 .card__list {
@@ -134,11 +147,11 @@ a {
 }
 
 .card__icon:hover {
-    color: rgb(226, 176, 23);
+    color: var(--color-fav);
 }
 
 .card__icon--fav {
-    color: rgb(226, 176, 23);
+    color: var(--color-fav);
 }
 
 

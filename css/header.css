@@ -14,7 +14,7 @@
     width: 100%;
 }
 
-.search__form {
+.header__search {
     margin: 0 auto;
     width: 90%;
     position: relative;
@@ -81,6 +81,6 @@
 
 .nav__link:hover,
 .nav__element:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     color: var(--color-secondary);
 }

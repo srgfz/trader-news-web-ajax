@@ -5,18 +5,25 @@ import { Stock } from "./Stock.js"
 
 //*TODO: funciones y cosas:
 let cards = document.getElementById("cards")
+let searchBtn = document.getElementById("searchBtn")
+let searchInput = document.getElementById("searchInput")
+let main = document.getElementById("main")
+
 
 //
-const rapidApiKey = "#"
+const rapidApiKey = "ca4e56b336msh51eea07165448f2p189344jsn6855668a93da"
 
 let graphicHeight = 350
 let graphicWidth = 600
-let graphic
+let graphics = []
 
 let myPortfolio = []
-let searchPerformanceIds = ""
 let companies = []
-let showMyPortfolio = false
+
+let searchPerformanceIds = ""
+let companyName = ""
+
+let showMyPortfolio = true//Por defecto se mostrará la cartera
 
 let millisceondsDay = 24 * 60 * 60 * 1000
 let beforeYesterday = new Date(new Date() - millisceondsDay * 2).toISOString().split("T")[0]
@@ -27,9 +34,9 @@ const getMyPortfolioCompanies = () => {
         myPortfolio = JSON.parse(localStorage.getItem("myPortfolio"))
     }
     if (showMyPortfolio) {//Si pulsa en mostrar portfolio saco los ids guardados para volver a hacer la petición y que los datos sean actualizados
-        myPortfolio.map(company => {
+        myPortfolio.map((company, index) => {
             searchPerformanceIds += company.id
-            if (company !== companies[companies.length]) {//Concateno todos los ids menos el último
+            if ((index + 1) !== myPortfolio.length) {//Concateno todos los ids menos el último
                 searchPerformanceIds += "%2C"
             }
         })
@@ -72,6 +79,8 @@ const saveCompanyInfo = (company) => {
 }
 
 
+
+
 const saveCompanyStock = (data) => {
     data.map(companyData => {
         companies.map(company => {
@@ -81,6 +90,21 @@ const saveCompanyStock = (data) => {
         })
     })
 }
+
+const updateCompanyStock = (data) => {
+    data.map(companyData => {
+        myPortfolio.map(company => {
+            if (companyData.RequestKey == company.id) {//Actualizo el registro que corresponda
+                company["day"] = companyData["1D"]
+                company["trimester"] = companyData["3M"]
+                company["year"] = companyData["1Y"]
+                company["lustrum"] = companyData["5Y"]
+                company["max"] = companyData["MAX"]
+            }
+        })
+    })
+}
+
 
 
 /*
@@ -106,23 +130,53 @@ const rapidApiReturn = async (method, rapidApiHost, fetchUrl, apiKey = rapidApiK
         .catch(err => console.error(err));
 }
 
-
-const printNotFoundMessage = () => {
+const printMyPortfolioEmpty = () => {
+    while (cards.children[0]) {//Borro los elementos que puedan haber en cards
+        cards.children[0].remove()
+    }
+    //Muestro el mensaje
     let notFoundMessage = document.createElement("P")
     notFoundMessage.classList.add("cards__message")
-    notFoundMessage.textContent = "-- Actualmente no disponemos de ningún registro para la empresa solicitada --"
+    notFoundMessage.textContent = "-- Todavía no tiene ninguna acción guardada en su cartera, use el buscador si desea añadir alguna --"
+    cards.appendChild(notFoundMessage)
+}
+
+const printNotFoundMessage = () => {
+    while (cards.children[0]) {//Borro los elementos que puedan haber en cards
+        cards.children[0].remove()
+    }
+    //Muestro el mensaje
+    let notFoundMessage = document.createElement("P")
+    notFoundMessage.classList.add("cards__message")
+    notFoundMessage.textContent = "-- Actualmente no disponemos de ningún registro para la empresa solicitada, asegurese de que el nombre está correctamente escrito --"
     cards.appendChild(notFoundMessage)
 }
 
 const apiRequests = async () => {
+    let dataAvailable = true
     if (!showMyPortfolio) {//Si busca alguna acción
         //Guardamos la información de la empresa:
-        let companyInfo = await rapidApiReturn("GET", "ms-finance.p.rapidapi.com", "https://ms-finance.p.rapidapi.com/market/auto-complete?query=tesla");
-        saveCompanyInfo(companyInfo[0])//Muestro el primer resultado, ya que los demás suelen no tener datos de cotización y provocan que la petición no devuelva ningún dato
+        let companyInfo = await rapidApiReturn("GET", "ms-finance.p.rapidapi.com", `https://ms-finance.p.rapidapi.com/market/auto-complete?query=${companyName}`);
+        if (companyInfo[0]) {//Si la consulta devuelve al menos un resultado
+            saveCompanyInfo(companyInfo[0])//Muestro el primer resultado, ya que los demás suelen no tener datos de cotización y provocan que la petición no devuelva ningún dato
+        } else {//Si no hay resultados para la consulta
+            dataAvailable = false
+        }
     }
     //Guardamos la cotización de las acciones
-    let companiesStock = await rapidApiReturn("GET", "ms-finance.p.rapidapi.com", `https://ms-finance.p.rapidapi.com/stock/get-histories?PerformanceId=${searchPerformanceIds}`);
-    saveCompanyStock(companiesStock)
+    if (!showMyPortfolio || searchPerformanceIds) {//Si está buscando o hay datos guardados en myPortfolio
+        if (dataAvailable) {//Si hay datos
+            let companiesStock = await rapidApiReturn("GET", "ms-finance.p.rapidapi.com", `https://ms-finance.p.rapidapi.com/stock/get-histories?PerformanceId=${searchPerformanceIds}`);
+            //Si es búsqueda seteo los datos, si es mi cartera los actualizo en caso de tener alguna acción guardada:
+            showMyPortfolio ? updateCompanyStock(companiesStock) : saveCompanyStock(companiesStock)
+        } else {//Si no hay datos muestro el mensaje avisando al usuario
+            printNotFoundMessage()
+        }
+    } else {
+        printMyPortfolioEmpty()
+    }
+
+
 }
 
 
@@ -165,10 +219,17 @@ const generateChartJs = (canvas, values) => {
             },
         }
     }
-    if (graphic) {//Si tengo el gráfico lo destruyo para poder atualizarlo con los distintos datos de las series temporales
-        graphic.destroy()
+    //Destruyo el 
+    if (graphics) {//Si tengo el gráfico lo destruyo para poder atualizarlo con los distintos datos de las series temporales
+        //graphics[0].destroy()
+        graphics.map((graphic, index) => {
+            if (graphic[0] == canvas.id) {//Si cambio el gráfico a otra serie temporal destruyo el que había
+                graphics.splice(index, 1)
+                graphic[1].destroy()
+            }
+        })
     }
-    graphic = new Chart(canvas, config)
+    graphics.push([canvas.id, new Chart(canvas.getContext("2d"), config)])
 }
 
 
@@ -176,7 +237,14 @@ const generateChartJs = (canvas, values) => {
 const takeDataforGraphic = (company, dataSetOption = "year") => {
     let values = []
     let labels = []
-    if (dataSetOption == "trimester") {
+    if (dataSetOption == "day") {
+        company.stock.trimester.map(companyStock => {
+            if (companyStock.DateTime.split("T")[0] <= beforeYesterday) {//Si los datos son anteriores a 1D
+                values.push(companyStock.Price)
+                labels.push(companyStock.DateTime)
+            }
+        })
+    } else if (dataSetOption == "trimester") {
         company.stock.trimester.map(companyStock => {
             if (companyStock.DateTime.split("T")[0] <= beforeYesterday) {//Si los datos son anteriores a 1D
                 values.push(companyStock.Price)
@@ -216,9 +284,8 @@ const generateGraphic = (company) => {
     cardCanvas.setAttribute("ID", `canvas${company.name}`)
     cardCanvas.setAttribute("WIDTH", graphicWidth)
     cardCanvas.setAttribute("HEIGHT", graphicHeight)
-    let ctx = cardCanvas.getContext("2d")
     //canvasContainer.innerHTML = `<canvas class="card__canvas" id="canvas${company.id}" width="500" height="250"></canvas>`
-    generateChartJs(ctx, takeDataforGraphic(company))
+    generateChartJs(cardCanvas, takeDataforGraphic(company))
     return cardCanvas
 }
 
@@ -330,9 +397,14 @@ const generateCard = (company) => {
 
 
 
-const generateGraphicCards = () => {
+const generateGraphicCards = (companiesToPrint = companies) => {
     let fragmentCards = document.createDocumentFragment()
-    companies.map(company => {//Para cada empresa creo su tarjeta
+    //Título del main:
+    let mainTitle = document.createElement("H2")
+    mainTitle.classList.add("main__Title")
+    mainTitle.textContent = showMyPortfolio ? "Mi Cartera" : `Resutados de "${companyName}"`
+    main.prepend(mainTitle)
+    companiesToPrint.map(company => {//Para cada empresa creo su tarjeta
         if (company.stock) {//Solo muestro los resultados de las empresas que tengan datos de cotizaciones 
             fragmentCards.appendChild(generateCard(company))
         } else {//Si la empresa no tiene cotizaciones lo meustro en un mensaje
@@ -342,43 +414,75 @@ const generateGraphicCards = () => {
     cards.appendChild(fragmentCards)
 }
 
+const actionFavButton = (btn) => {
+    btn.classList.toggle("card__icon--fav")//Coloreamos el botón
+    //Guardamos el nombre de la empresa que hemos pulsado
+    let performanceId = btn.previousElementSibling.textContent
+    //Guardo el objeto completo de la empresa seleccionada:
+    let companySelected
+    let arrayCompanies = showMyPortfolio ? myPortfolio : companies
+    arrayCompanies.map(company => {
+        if (company.id == performanceId) {
+            companySelected = company
+        }
+    })
+    if (btn.classList.contains("card__icon--fav")) {//añado la empresa a mi portfolio
+        addCompanyToMyPortfolio(companySelected)
+    } else {//quito la empresa de mi portfolio
+        removeCompanyToMyPortfolio(companySelected)
+        if (showMyPortfolio) {//Si la elimino desde mi portfolio la tarjeta desaparece, si es desde el buscador la tarjeta permanece
+            btn.parentElement.parentElement.remove()
+        }
+    }
+}
+
+const actionGraphicButtons = (btn) => {
+    let btns = Array.from(btn.parentElement.querySelectorAll(".card__button"))//Guardo todos los botones de esa tarjeta
+    let canvas = btn.parentElement.previousElementSibling//Guardamos el canvas correspondiente al elemento pulsado
+    let companyId = btn.parentElement.parentElement.parentElement.children[0].textContent//Guardo el id de la tarjeta seleccionada
+    btns.map(btn => {//Recorro los botones eliminando la clase active
+        btn.classList.remove("card__button--active")
+    })
+    btn.classList.add("card__button--active")//Coloreo el botón seleccionado
+    let dataSet = btn.textContent == "1D" ? "day" : btn.textContent == "3M" ? "trimester" : btn.textContent == "1Y" ? "year" : btn.textContent == "5Y" ? "lustrum" : "max"
+    //TODO: CONTROLAR GRAFICOS*********************
+    //Guardo la acción seleccionada
+    if (showMyPortfolio) {
+        myPortfolio.map(company => {
+            if (company.id === companyId) {
+                generateChartJs(canvas, takeDataforGraphic(company, dataSet))
+            }
+        })
+    } else {//Las búsquedas solo dan una acción
+        generateChartJs(canvas, takeDataforGraphic(companies[0], dataSet))
+
+    }
+}
+
+const actionSearchButton = () => {
+    showMyPortfolio = false//Cambio la opción de mostrar mi cartera ya que se está realizando una búsqueda
+    //Limpio el array de Companies
+    companies = []
+    //Borro el título
+    main.children[0].remove()
+    //Limpio el contenido de cards:
+    while (cards.children[0]) {
+        cards.children[0].remove()
+    }
+    companyName = searchInput.value.trim().toUpperCase()
+    searchInput.textContent = ""//Limpio el input de buscar
+    loadControler()
+}
+
 
 const handleClick = (ev) => {
     let btn = ev.target
-    if (btn.id == "addMyPortfolio") {//Si pulsa sobre el botón de favoritos
-        btn.classList.toggle("card__icon--fav")//Coloreamos el botón
-        //Guardamos el nombre de la empresa que hemos pulsado
-        let performanceId = btn.previousElementSibling.textContent
-        //Guardo el objeto completo de la empresa seleccionada:
-        let companySelected
-        companies.map(company => {
-            if (company.id == performanceId) {
-                companySelected = company
-            }
-        })
-        if (btn.classList.contains("card__icon--fav")) {//añado la empresa a mi portfolio
-            addCompanyToMyPortfolio(companySelected)
-        } else {//quito la empresa de mi portfolio
-            removeCompanyToMyPortfolio(companySelected)
-            if (showMyPortfolio) {//Si la elimino desde mi portfolio la tarjeta desaparece, si es desde el buscador la tarjeta permanece
-                //Elimino la tarjeta
-                btn.parentElement.parentElement.remove()
-            }
-        }
-    } else if (btn.classList.contains("card__button")) {//Si pulsa sobre algún botón de las cotizaciones históricas
-        let btns = Array.from(btn.parentElement.querySelectorAll(".card__button"))//Guardo todos los botones de esa tarjeta
-        let canvas = btn.parentElement.previousElementSibling//Guardamos el canvas correspondiente al elemento pulsado
-        let ctx = canvas.getContext("2d")//Guardamos su contexto
-        let companyId = btn.parentElement.parentElement.parentElement.children[0].textContent//Guardo el id de la tarjeta seleccionada
-        btns.map(btn => {//Recorro los botones eliminando la clase active
-            btn.classList.remove("card__button--active")
-        })
-        btn.classList.add("card__button--active")//Coloreo el botón seleccionado
-        let dataSet = btn.textContent == "1D" ? "day" : btn.textContent == "3M" ? "trimester" : btn.textContent == "1Y" ? "year" : btn.textContent == "5Y" ? "lustrum" : "max"
-
-        generateChartJs(ctx, takeDataforGraphic(companies[0], dataSet))
-
-
+    if (btn.classList.contains("card__icon")) {//Si pulsa sobre el botón de favoritos
+        actionFavButton(btn)
+    } else if (btn.classList.contains("card__button") && !btn.classList.contains("card__button--active")) {//Si pulsa sobre algún botón de las cotizaciones históricas y no está pulsado ya
+        actionGraphicButtons(btn)
+    } else if ((btn == searchBtn || btn == searchBtn.children[0]) && searchInput.value.trim() !== "") {//Si realiza una búsqueda y no está vacío el input
+        actionSearchButton()
     }
 }
 
@@ -386,7 +490,7 @@ const handleClick = (ev) => {
 const loadControler = async () => {
     getMyPortfolioCompanies()
     await apiRequests()
-    generateGraphicCards()
+    showMyPortfolio ? generateGraphicCards(myPortfolio) : generateGraphicCards()//Dependiendo de si busca o lista su cartera paso un parámetro o el parámetro por defecto companies
 }
 
 

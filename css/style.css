@@ -85,8 +85,8 @@ a {
 .card__buttons {
     display: flex;
     justify-content: space-evenly;
-    background-color: var(--color-primary);
-    ;
+    background-color: var(--color-secondary);
+    font-weight: bold;
     margin: 0;
 }
 
@@ -97,12 +97,12 @@ a {
 }
 
 .card__button:hover {
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary);
     ;
 }
 
 .card__button--active {
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary);
     ;
 }
 
@@ -127,7 +127,7 @@ a {
 }
 
 .card__title:hover {
-    color: var(--color-primary);
+    color: var(--color-secondary);
     ;
 }
 

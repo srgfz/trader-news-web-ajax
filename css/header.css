@@ -23,20 +23,20 @@
 }
 
 .search__input {
-    background-color: var(--color-primary);
+    background-color: rgba(135, 132, 132, 0.181);
     width: 100%;
     border: none;
     padding: 8px;
     border-radius: 15px 0 0 15px;
     outline: none;
-    color: black;
+    color: var(--color-text-primary);
     border: 2px solid var(--color-secondary);
     border-right: none;
     color: gray;
 }
 
 .search__input:focus {
-    color: var(--color-secondary);
+    color: var(--color-text-primary);
     font-weight: bold;
 }
 
@@ -67,10 +67,10 @@
 }
 
 .nav__link {
-    color: rgb(110, 110, 110);
+    color: rgb(58, 63, 61);
     padding: 0 10px;
-
-
+    font-size: 1.15rem;
+    margin: 10px;
 }
 
 .nav__link--active {

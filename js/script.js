@@ -1,3 +1,7 @@
+//Pongo ?# para que el usuario pueda usar el buscador del nav desde la primera carga
+location.href = './index.html?#';
+
+
 import { Company } from "./Company.js"
 import { News } from "./News.js"
 import { Stock } from "./Stock.js"
@@ -8,10 +12,11 @@ let cards = document.getElementById("cards")
 let searchBtn = document.getElementById("searchBtn")
 let searchInput = document.getElementById("searchInput")
 let main = document.getElementById("main")
-
+let spinner = document.getElementById("spinner")
+let localStorageLimitMessage = document.getElementById("localStorageLimitMessage")
 
 //
-const rapidApiKey = "ca4e56b336msh51eea07165448f2p189344jsn6855668a93da"
+const rapidApiKey = "#"
 
 let graphicHeight = 350
 let graphicWidth = 600
@@ -43,12 +48,23 @@ const getMyPortfolioCompanies = () => {
     }
 }
 
-const addCompanyToMyPortfolio = (companyToAdd) => {
+const addCompanyToMyPortfolio = (btn, companyToAdd) => {
     if (localStorage.getItem("myPortfolio")) {//Si existe el localStorage de myPortfolio
         myPortfolio = JSON.parse(localStorage.getItem("myPortfolio"))
     }
-    myPortfolio.push(companyToAdd)
-    localStorage.setItem("myPortfolio", JSON.stringify(myPortfolio))
+    if (myPortfolio.length < 5) {//Solo puede añadir 5 empresas a su cartera
+        myPortfolio.push(companyToAdd)
+        localStorage.setItem("myPortfolio", JSON.stringify(myPortfolio))
+    } else {//Si ya tiene 5 empresas guardadas
+        console.log("aser")
+        btn.classList.remove("card__icon--fav")//
+        localStorageLimitMessage.classList.remove("displayNone")
+        localStorageLimitMessage.classList.add("animationMessageMyPortfolioLimit", "displayBlock")
+        setTimeout(() => {
+            localStorageLimitMessage.classList.add("displayNone")
+            localStorageLimitMessage.classList.remove("animationMessageMyPortfolioLimit", "displayBlock")
+        }, 4000)
+    }
 }
 
 const removeCompanyToMyPortfolio = (companyToRemove) => {
@@ -137,7 +153,7 @@ const printMyPortfolioEmpty = () => {
     //Muestro el mensaje
     let notFoundMessage = document.createElement("P")
     notFoundMessage.classList.add("cards__message")
-    notFoundMessage.textContent = "-- Todavía no tiene ninguna acción guardada en su cartera, use el buscador si desea añadir alguna --"
+    notFoundMessage.textContent = "- - Todavía no tiene ninguna acción guardada en su cartera, use el buscador si desea añadir alguna - -"
     cards.appendChild(notFoundMessage)
 }
 
@@ -148,15 +164,21 @@ const printNotFoundMessage = () => {
     //Muestro el mensaje
     let notFoundMessage = document.createElement("P")
     notFoundMessage.classList.add("cards__message")
-    notFoundMessage.textContent = "-- Actualmente no disponemos de ningún registro para la empresa solicitada, asegurese de que el nombre está correctamente escrito --"
+    notFoundMessage.textContent = "- - Actualmente no disponemos de ningún registro para la empresa solicitada, asegurese de que el nombre está correctamente escrito - -"
     cards.appendChild(notFoundMessage)
 }
 
 const apiRequests = async () => {
+    //Muestro el spinner de carga
+    spinner.classList.add("displayBlock")
+    spinner.classList.remove("displayNone")
+
+
     let dataAvailable = true
     if (!showMyPortfolio) {//Si busca alguna acción
         //Guardamos la información de la empresa:
         let companyInfo = await rapidApiReturn("GET", "ms-finance.p.rapidapi.com", `https://ms-finance.p.rapidapi.com/market/auto-complete?query=${companyName}`);
+        console.log(companyInfo)
         if (companyInfo[0]) {//Si la consulta devuelve al menos un resultado
             saveCompanyInfo(companyInfo[0])//Muestro el primer resultado, ya que los demás suelen no tener datos de cotización y provocan que la petición no devuelva ningún dato
         } else {//Si no hay resultados para la consulta
@@ -175,8 +197,9 @@ const apiRequests = async () => {
     } else {
         printMyPortfolioEmpty()
     }
-
-
+    //Oculto el spinner de carga
+    spinner.classList.remove("displayBlock")
+    spinner.classList.add("displayNone")
 }
 
 
@@ -189,14 +212,14 @@ const appendChildFunction = (father, arraySons) => {
 }
 
 
-const generateChartJs = (canvas, values) => {
+const generateChartJs = (canvas, values, currency) => {
     const config = {
         type: "line",
         data: {
             labels: values[1],
             datasets: [
                 {
-                    label: "USD $",
+                    label: currency,
                     backgroundColor: "rgb(0,0,0,0.5)",
                     borderColor: "rgb(245, 245, 245)",
                     data: values[0],
@@ -285,7 +308,7 @@ const generateGraphic = (company) => {
     cardCanvas.setAttribute("WIDTH", graphicWidth)
     cardCanvas.setAttribute("HEIGHT", graphicHeight)
     //canvasContainer.innerHTML = `<canvas class="card__canvas" id="canvas${company.id}" width="500" height="250"></canvas>`
-    generateChartJs(cardCanvas, takeDataforGraphic(company))
+    generateChartJs(cardCanvas, takeDataforGraphic(company), company.currency)
     return cardCanvas
 }
 
@@ -351,7 +374,7 @@ const generateButtons = (company) => {
                 cardButton.classList.add("card__button--active")
             }
             //Mostramos el contenido del botón según los datos disponibles que tenga la acción
-            let textContentCardButton = stockDataSet == "day" ? "1D" : stockDataSet == "trimester" ? "3M" : stockDataSet == "year" ? "1Y" : stockDataSet == "lustrum" ? "5Y" : "MAX"
+            let textContentCardButton = stockDataSet == "day" ? "MIN" : stockDataSet == "trimester" ? "3M" : stockDataSet == "year" ? "1Y" : stockDataSet == "lustrum" ? "5Y" : "MAX"
             cardButton.textContent = textContentCardButton
             //añado los botones al padre
             cardButtons.appendChild(cardButton)
@@ -401,7 +424,7 @@ const generateGraphicCards = (companiesToPrint = companies) => {
     let fragmentCards = document.createDocumentFragment()
     //Título del main:
     let mainTitle = document.createElement("H2")
-    mainTitle.classList.add("main__Title")
+    mainTitle.classList.add("main__title")
     mainTitle.textContent = showMyPortfolio ? "Mi Cartera" : `Resutados de "${companyName}"`
     main.prepend(mainTitle)
     companiesToPrint.map(company => {//Para cada empresa creo su tarjeta
@@ -427,12 +450,17 @@ const actionFavButton = (btn) => {
         }
     })
     if (btn.classList.contains("card__icon--fav")) {//añado la empresa a mi portfolio
-        addCompanyToMyPortfolio(companySelected)
+        addCompanyToMyPortfolio(btn, companySelected)
     } else {//quito la empresa de mi portfolio
         removeCompanyToMyPortfolio(companySelected)
         if (showMyPortfolio) {//Si la elimino desde mi portfolio la tarjeta desaparece, si es desde el buscador la tarjeta permanece
-            btn.parentElement.parentElement.remove()
+            //Si al eliminarla no tengo ninguna guardaa muestro un mensaje:
+            if (!cards.children[0]) {
+                printMyPortfolioEmpty()
+            }
         }
+        btn.parentElement.parentElement.classList.add("animationRemoveElement")//Animación de quitar la empresa
+        setTimeout(() => btn.parentElement.parentElement.remove(), 800)
     }
 }
 
@@ -445,19 +473,19 @@ const actionGraphicButtons = (btn) => {
     })
     btn.classList.add("card__button--active")//Coloreo el botón seleccionado
     let dataSet = btn.textContent == "1D" ? "day" : btn.textContent == "3M" ? "trimester" : btn.textContent == "1Y" ? "year" : btn.textContent == "5Y" ? "lustrum" : "max"
-    //TODO: CONTROLAR GRAFICOS*********************
     //Guardo la acción seleccionada
     if (showMyPortfolio) {
         myPortfolio.map(company => {
             if (company.id === companyId) {
-                generateChartJs(canvas, takeDataforGraphic(company, dataSet))
+                generateChartJs(canvas, takeDataforGraphic(company, dataSet), company.currency)
             }
         })
     } else {//Las búsquedas solo dan una acción
-        generateChartJs(canvas, takeDataforGraphic(companies[0], dataSet))
+        generateChartJs(canvas, takeDataforGraphic(companies[0], dataSet), companies[0].currency)
 
     }
 }
+
 
 const actionSearchButton = () => {
     showMyPortfolio = false//Cambio la opción de mostrar mi cartera ya que se está realizando una búsqueda
@@ -471,7 +499,11 @@ const actionSearchButton = () => {
     }
     companyName = searchInput.value.trim().toUpperCase()
     searchInput.textContent = ""//Limpio el input de buscar
+    searchInput.value = ""
+    searchInput.blur()//Quito el foco del inputSearch del nav para que no pueda realizar otra búsqueda mientras se está cargando una
     loadControler()
+
+
 }
 
 
@@ -497,4 +529,6 @@ const loadControler = async () => {
 
 //***LISTENERS */
 document.addEventListener("click", handleClick)
+searchBtn.addEventListener("submit", (ev) => ev.preventDefault());//Evito que lo envíe para poder usar el enter en el input y que no recargue la página
+
 document.addEventListener("DOMContentLoaded", loadControler)

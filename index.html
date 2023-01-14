@@ -16,6 +16,15 @@
 
 <body>
     <div class="container">
+        <!--********** Spinner de carga **********-->
+        <div class="spinner displayNone" id="spinner">
+            <div class="spinner__element">
+            </div>
+        </div>
+        <!--********** Mensaje de aviso de Local Storage (Lo limito a 5 para que los tiempos de carga no sean tan altos) **********-->
+        <div class="localStorageMessage displayNone " id="localStorageLimitMessage">
+            No puede añadir más de 5 elementos a su cartera
+        </div>
         <!--********** Comienzo del header **********-->
         <header class="header">
             <a href="./index.html">
@@ -23,11 +32,11 @@
                     <img class="title__img" src="./assets/images/logo1.png" alt="Logo de la Página">
                 </h1>
             </a>
-            <div class="header__search">
+            <form class="header__search" action="#" method="#">
                 <input id="searchInput" type="search" class="search__input"
                     placeholder="Buscar Empresa (Tesla, Meta, Miscrosoft, Alphabet, etc)">
                 <button type="submit" class="search__button" id="searchBtn"><i class="bi bi-search"></i></button>
-            </div>
+            </form>
             <!--********** Inicio del nav **********-->
             <nav class="nav">
                 <ul class="nav__list">
@@ -44,7 +53,6 @@
 
         <!--********** Inicio del main **********-->
         <main class="main" id="main">
-
             <div class="cards" id="cards">
                 <!-- Estructura html de una tarjeta con gráfico: -->
                 <!-- <div class="card">
@@ -99,6 +107,7 @@
 
                 </div> -->
             </div>
+
         </main>
         <!--********** Fin del main **********-->
         <!--********** Comienzo del footer **********-->

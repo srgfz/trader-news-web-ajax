@@ -4,22 +4,24 @@
 /* Le doy un fondo y un formato general a la página: */
 
 :root {
-    --color-primary: rgba(186, 220, 186, 0.487);
+    --color-primary: rgba(187, 206, 187, 0.77);
     --color-secondary: rgba(34, 95, 34, 0.611);
     --color-tertiary: #161616;
     --color-graphic: rgba(171, 171, 171, 0.802);
     --color-fav: rgb(226, 176, 23);
+    --color-text-primary: rgba(0, 0, 0, 0.748);
+    --color-text-secondary: whitesmoke;
     --font-titles: Verdana;
     --font-primary: Roboto;
 }
 
 body {
-    background-color: #161616;
+    background-color: var(--color-primary);
     min-width: 350px;
     max-width: 1600px;
     text-align: center;
     margin: 0 auto;
-    color: whitesmoke;
+    color: var(--color-text-secondary);
     font-family: var(--font-primary), Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -32,7 +34,7 @@ ul {
 
 a {
     text-decoration: none;
-    color: whitesmoke;
+    color: var(--color-text-secondary);
 }
 
 
@@ -48,23 +50,49 @@ a {
     src: url(../assets/fuentes/BebasNeue-Regular.ttf);
 }
 
+.main {
+    padding: 20px 60px;
+    text-align: left;
+}
+
+
+
+.main__title {
+    border-bottom: 4px solid var(--color-secondary);
+    font-size: 1.8rem;
+    font-variant: small-caps;
+    padding: 5px 10px;
+    width: 400px;
+    color: var(--color-text-primary);
+    margin: 15px 0 40px;
+}
+
+.cards__message {
+    color: var(--color-text-primary);
+    padding: 15px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.574);
+    box-shadow: 0 0 15px var(--color-primary);
+}
 
 .cards {
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 50px 70px;
 }
 
 .card {
-    color: black;
+    color: var(--color-text-primary);
     border-radius: 15px;
     max-width: 600px;
     width: 600px;
-    padding: 5px 25px;
-    transition: transform 1.2s;
+    transition: transform .8s;
+    box-shadow: 0 0 15px var(--color-primary);
 }
 
 .card:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .card__header {
@@ -75,7 +103,7 @@ a {
 }
 
 .card__canvas {
-    border: 3px solid whitesmoke;
+    border: 3px solid var(--color-text-secondary);
     border: none;
     padding: 0 15px;
     max-width: 600px;
@@ -94,6 +122,7 @@ a {
     width: 40px;
     padding: 10px 5px;
     cursor: pointer;
+    text-align: center;
 }
 
 .card__button:hover {
@@ -107,7 +136,7 @@ a {
 }
 
 .card__main {
-    background-color: whitesmoke;
+    background-color: var(--color-text-secondary);
     padding: 15px 0;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -124,6 +153,8 @@ a {
     padding: 15px 50px;
     justify-content: center;
     cursor: pointer;
+    text-align: center;
+    font-variant: small-caps;
 }
 
 .card__title:hover {
@@ -142,7 +173,7 @@ a {
     left: 25px;
     font-size: 1.2rem;
     color: transparent;
-    -webkit-text-stroke: 2px rgba(31, 27, 27, 0.697);
+    -webkit-text-stroke: 2px var(--color-text-primary);
     cursor: pointer;
 }
 
@@ -163,9 +194,94 @@ a {
     display: none;
 }
 
+.displayBlock {
+    display: block;
+}
+
 
 .cards__message {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
+    text-align: center;
     margin: 0 auto;
-    color: whitesmoke;
+    color: var(--color-text-secondary);
+}
+
+.spinner {
+    background: rgba(70, 70, 70, 0.7);
+    position: fixed;
+    z-index: 10;
+    width: 90%;
+    min-height: 90vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+}
+
+.spinner__element {
+    border-radius: 50%;
+    border: 9px solid var(--color-primary);
+    height: 40px;
+    width: 40px;
+    border-right-color: transparent;
+    margin: 0 auto;
+    margin-top: 30vh;
+    animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.animationRemoveElement {
+    animation: animationRemoveElement .8s ease forwards;
+}
+
+@keyframes animationRemoveElement {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+}
+
+
+.localStorageMessage {
+    background: rgba(70, 70, 70, 0.8);
+    position: fixed;
+    padding: 50px;
+    z-index: 5;
+    border-radius: 15px;
+    font-size: 1.25rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.animationMessageMyPortfolioLimit {
+    animation: animationMessageMyPortfolioLimit 4s ease forwards;
+}
+
+@keyframes animationMessageMyPortfolioLimit {
+    0% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }

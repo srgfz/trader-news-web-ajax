@@ -8,7 +8,11 @@
     <title>Título pág</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/header.css">
-    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <link rel="stylesheet" href="./css/indexMain.css">
+    <link rel="stylesheet" href="./css/footer.css">
+
+    <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="shortcut icon" href="./assets/images/logoIcon2.png" type="image/x-icon">
     <!-- Enlazo los iconos de Bootstrap: -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
@@ -29,7 +33,8 @@
         <header class="header">
             <a href="./index.html">
                 <h1 class="header__title">
-                    <img class="title__img" src="./assets/images/logo1.png" alt="Logo de la Página">
+                    <img class="title__img1" src="./assets/images/logo3.png" alt="Logo de la Página">
+                    <img class="title__img2" src="./assets/images/logo2.png" alt="Logo de la Página">
                 </h1>
             </a>
             <form class="header__search" action="#" method="#">
@@ -112,9 +117,40 @@
         <!--********** Fin del main **********-->
         <!--********** Comienzo del footer **********-->
         <footer class="footer">
-
+            <div class="footerDiv">
+                <h3 class="footer__title">
+                    Sobre Nosotros
+                </h3>
+                <ul class="footer__list">
+                    <li class="footer__element"><a href="#" class="footer__link">Herramientas Web</a></li>
+                    <li class="footer__element"><a href="#" class="footer__link">Nuestra metodología</a></li>
+                    <li class="footer__element"><a href="#" class="footer__link">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footerDiv">
+                <h3 class="footer__title">
+                    Ayuda
+                </h3>
+                <ul class="footer__list">
+                    <li class="footer__element"><a href="#" class="footer__link">Herramientas Web</a></li>
+                    <li class="footer__element"><a href="#" class="footer__link">Nuestra metodología</a></li>
+                    <li class="footer__element"><a href="#" class="footer__link">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footerDiv">
+                <h3 class="footer__title">
+                    Redes Sociales
+                </h3>
+                <ul class="footer__list">
+                    <li class="footer__element"><a href="#" class="footer__link"><i
+                                class="bi bi-twitter footer__icon footer__icon--twitter"></i>Twitter</a></li>
+                    <li class="footer__element"><a href="#" class="footer__link"><i
+                                class="bi bi-instagram footer__icon footer__icon--instagram"></i>Instagram</a></li>
+                    <li class="footer__element"><a href="#" class="footer__link"><i
+                                class="bi bi-linkedin footer__icon footer__icon--linkedin"></i>Linkedin</a></li>
+                </ul>
+            </div>
         </footer>
-        <!--********** Fin del footer **********-->
 
     </div>
     <!-- Script de Chart.js: -->

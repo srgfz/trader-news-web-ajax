@@ -7,7 +7,6 @@ import { News } from "./News.js"
 import { Stock } from "./Stock.js"
 
 
-//*TODO: funciones y cosas:
 let cards = document.getElementById("cards")
 let searchBtn = document.getElementById("searchBtn")
 let searchInput = document.getElementById("searchInput")
@@ -122,15 +121,6 @@ const updateCompanyStock = (data) => {
 }
 
 
-
-/*
-* 
-* @param {$method} method 
-* @param {*} rapidApiKey 
-* @param {*} rapidApiHost 
-* @param {*} fetchUrl 
-* @returns : devuelve el resultado de la petición a rapidApi
-*/
 const rapidApiReturn = async (method, rapidApiHost, fetchUrl, apiKey = rapidApiKey) => {
     const options = {
         method: method,

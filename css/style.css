@@ -16,8 +16,9 @@
 }
 
 body {
-    background-color: var(--color-primary);
-    min-width: 350px;
+    background-color: rgb(44, 42, 42);
+    background-image: url(../assets/images/footer.png);
+    min-width: 375px;
     max-width: 1600px;
     text-align: center;
     margin: 0 auto;
@@ -50,9 +51,27 @@ a {
     src: url(../assets/fuentes/BebasNeue-Regular.ttf);
 }
 
+
+.container {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer"
+    ;
+}
+
+
+
+
+
 .main {
+    background-color: var(--color-primary);
+    grid-area: main;
     padding: 20px 60px;
     text-align: left;
+    min-height: 50vh;
 }
 
 
@@ -62,18 +81,11 @@ a {
     font-size: 1.8rem;
     font-variant: small-caps;
     padding: 5px 10px;
-    width: 400px;
     color: var(--color-text-primary);
     margin: 15px 0 40px;
+    text-align: center;
 }
 
-.cards__message {
-    color: var(--color-text-primary);
-    padding: 15px;
-    border-radius: 15px;
-    background-color: rgba(0, 0, 0, 0.574);
-    box-shadow: 0 0 15px var(--color-primary);
-}
 
 .cards {
     display: flex;
@@ -200,6 +212,10 @@ a {
 
 
 .cards__message {
+    padding: 15px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.574);
+    box-shadow: 0 0 15px var(--color-secondary);
     font-size: 1.3rem;
     text-align: center;
     margin: 0 auto;

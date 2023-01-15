@@ -11,7 +11,7 @@ let main = document.getElementById("main")
 export let spinner = document.getElementById("spinner")
 let localStorageLimitMessage = document.getElementById("localStorageLimitMessage")
 
-const rapidApiKey = "1cce41d77dmshc35f7e99aa9ad13p1b2d79jsne3d15e66406e"
+const rapidApiKey = "#"
 
 let graphicHeight = 350
 let graphicWidth = 600

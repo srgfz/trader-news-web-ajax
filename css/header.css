@@ -1,8 +1,9 @@
+/*Css del header*/
 .header {
     grid-area: header;
-    background: rgba(219, 218, 218, 0.845);
+    background: rgba(255, 255, 255, 0.7);
     border-bottom: 5px solid var(--color-primary);
-    box-shadow: 0 0 10px white;
+    box-shadow: 0 0 15px var(--color-tertiary);
     padding: 5px 10px;
 }
 
@@ -57,10 +58,6 @@
     border-left: none;
 }
 
-
-
-
-
 .nav__list {
     margin: 0 auto;
     padding: 15px 0;
@@ -85,7 +82,6 @@
     border-bottom: 3px solid var(--color-secondary);
 
 }
-
 
 .nav__link:hover,
 .nav__element:hover {

@@ -1,0 +1,142 @@
+/*Css del main de index.html*/
+
+.cards {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 50px 70px;
+}
+
+.card {
+    color: var(--color-text-primary);
+    border-radius: 15px;
+    max-width: 600px;
+    width: 600px;
+    transition: transform .8s;
+    box-shadow: 0 0 15px var(--color-primary);
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card__header {
+    position: relative;
+    background-color: var(--color-graphic);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.card__canvas {
+    border: 3px solid var(--color-text-secondary);
+    border: none;
+    padding: 0 15px;
+    max-width: 600px;
+    max-height: 350px;
+}
+
+.card__buttons {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: var(--color-secondary);
+    font-weight: bold;
+    margin: 0;
+}
+
+.card__button {
+    width: 40px;
+    padding: 10px 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.card__button:hover {
+    background-color: var(--color-primary);
+    ;
+}
+
+.card__button--active {
+    background-color: var(--color-primary);
+    ;
+}
+
+.card__main {
+    background-color: var(--color-text-secondary);
+    padding: 15px 0;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.card__item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.card__title {
+    margin: 0;
+    color: var(--color-primary);
+    padding: 15px 50px;
+    justify-content: center;
+    cursor: pointer;
+    text-align: center;
+    font-variant: small-caps;
+}
+
+.card__link {
+    color: var(--color-secondary);
+}
+
+.card__link:hover {
+    text-decoration: underline;
+}
+
+.card__list {
+    padding: 0 10px 10px;
+    margin: 0;
+}
+
+.card__icon {
+    position: absolute;
+    top: 10px;
+    left: 25px;
+    font-size: 1.2rem;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--color-text-primary);
+    cursor: pointer;
+}
+
+.card__icon:hover {
+    color: var(--color-fav);
+}
+
+.card__icon--fav {
+    color: var(--color-fav);
+}
+
+.item__title {
+    font-weight: bold;
+}
+
+.localStorageMessage {
+    background: rgba(70, 70, 70, 0.8);
+    position: fixed;
+    padding: 50px;
+    z-index: 5;
+    border-radius: 15px;
+    font-size: 1.25rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.cards__message {
+    padding: 15px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.574);
+    box-shadow: 0 0 15px var(--color-secondary);
+    font-size: 1.3rem;
+    text-align: center;
+    margin: 0 auto;
+    color: var(--color-text-secondary);
+}

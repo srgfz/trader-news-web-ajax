@@ -1,0 +1,54 @@
+/*CSS de las animaciones*/
+.animationMessageMyPortfolioLimit {
+    animation: animationMessageMyPortfolioLimit 4s ease forwards;
+}
+
+@keyframes animationMessageMyPortfolioLimit {
+    0% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.animationRemoveElement {
+    animation: animationRemoveElement .8s ease forwards;
+}
+
+@keyframes animationRemoveElement {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+}
+
+.spinner__element {
+    border-radius: 50%;
+    border: 9px solid var(--color-primary);
+    height: 40px;
+    width: 40px;
+    border-right-color: transparent;
+    margin: auto;
+    animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

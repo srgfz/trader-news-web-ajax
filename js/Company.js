@@ -1,6 +1,6 @@
 export class Company {
     //Constructor
-    constructor(id, name, exchange, exchangeShortName, sector, industry, currency, stock, news) {
+    constructor(id, name, exchange, exchangeShortName, sector, industry, currency, stock) {
         this.id = id;
         this.name = name;
         this.exchange = exchange;
@@ -9,7 +9,6 @@ export class Company {
         this.industry = industry;
         this.currency = currency;
         this.stock = stock;
-        this.news = news;
     }
 
     //Getters y Setters:
@@ -68,15 +67,5 @@ export class Company {
     setStock(stock) {
         this.stock = stock;
     }
-
-    getNews() {
-        return this.news;
-    }
-    setNews(news) {
-        this.news = news;
-    }
-
-
-
 }
 
